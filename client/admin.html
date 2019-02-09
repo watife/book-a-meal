@@ -3,102 +3,173 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>trillo</title>
+    <title>user dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
       rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="./styles/admin.css"
     />
-    <link rel="stylesheet" type="text/css" media="screen" href="./admin.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/signin.css" />
     <script src="main.js"></script>
   </head>
-
   <body>
-    <div class="container">
-      <header class="header">
-        <img src="img/logo.png" alt="trillo logo" class="logo" />
-
-        <form action="#" class="search">
-          <input
-            type="text"
-            placeholder="Search hotels"
-            class="search__input"
-          />
-          <button class="search__button">
-            <svg class="search__icon">
-              <use xlink:href="img/sprite.svg#icon-magnifying-glass"></use>
-            </svg>
-          </button>
-        </form>
-
-        <nav class="user-nav">
-          <div class="user-nav__icon-box">
-            <svg class="user-nav__icon">
-              <use xlink:href="img/sprite.svg#icon-bookmark"></use>
-              <span class="user-nav__notification">7</span>
-            </svg>
+    <div class="admin">
+      <div>
+        <div class="container">
+          <div class="user-admin__header">
+            <div class="logo logo-admin">
+              BookMyMeal
+            </div>
+            <div class="avatar">
+              <img src="./assets/svg/avatar.svg" alt="" class="admin-avatar" />
+            </div>
           </div>
-          <div class="user-nav__icon-box">
-            <svg class="user-nav__icon">
-              <use xlink:href="img/sprite.svg#icon-chat"></use>
-              <span class="user-nav__notification">13</span>
-            </svg>
-          </div>
-          <div class="user-nav__user">
-            <img
-              src="img/bolu.jpeg"
-              alt="User Photo"
-              class="user-nav__user-photo"
-            />
-            <span class="user-nav-name">
-              Bolu
-            </span>
-          </div>
-        </nav>
-      </header>
 
-      <div class="content">
-        <nav class="sidebar">
-          <ul class="side-nav">
-            <li class="side-nav__item side-nav__item--active">
-              <a href="" class="side-nav__link">
-                <svg class="side-nav__icon">
-                  <use xlink:href="img/sprite.svg#icon-home"></use>
-                </svg>
-                <span>Hotel</span>
-              </a>
-            </li>
-            <li class="side-nav__item">
-              <a href="" class="side-nav__link">
-                <svg class="side-nav__icon">
-                  <use xlink:href="img/sprite.svg#icon-aircraft-take-off"></use>
-                </svg>
-                <span>Flight</span>
-              </a>
-            </li>
-            <li class="side-nav__item">
-              <a href="" class="side-nav__link">
-                <svg class="side-nav__icon">
-                  <use xlink:href="img/sprite.svg#icon-key"></use>
-                </svg>
-                <span>Car Rental</span>
-              </a>
-            </li>
-            <li class="side-nav__item">
-              <a href="" class="side-nav__link">
-                <svg class="side-nav__icon">
-                  <use xlink:href="img/sprite.svg#icon-map"></use>
-                </svg>
-                <span>Tours</span>
-              </a>
-            </li>
-          </ul>
+          <main class="content">
+            <aside class="sidebar">
+              <nav class="navigation">
+                <div class="nav-img__container">
+                  <img
+                    src="./assets/svg/tea.svg"
+                    alt="nav image"
+                    class="nav-img"
+                  />
+                  <p class="nav-img__text">
+                    Make order from our awesome menu!
+                  </p>
+                </div>
+                <hr class="ruler" />
 
-          <div class="legal">
-            &copy; 2017 by Trillo. All rights reserved.
-          </div>
-        </nav>
-        <main class="hotel-view"></main>
+                <div class="nav-unorder">
+                  <div class="nav-link">
+                    <div class="menu">
+                      Menu
+                    </div>
+                    <div class="menu-list active">
+                      Spagetti
+                    </div>
+                    <div class="menu-list">Burger</div>
+                    <div class="menu-list">Local Dishes</div>
+                    <div class="menu-list">Chicken Curry</div>
+                    <div class="menu-list">Rice and sauce</div>
+                  </div>
+                  <div class="nav-link">Order History</div>
+                </div>
+              </nav>
+              <div class="legal">
+                &copy; 2019 by Boluwatife. All rights reserved.
+              </div>
+            </aside>
+            <main class="main">
+              <div class="main-header">
+                <p>Spagetti</p>
+              </div>
+              <hr class="ruler" />
+              <div class="main-dish">
+                <div class="main-dish__title">
+                  Spagetti Native
+                </div>
+                <div class="main-dish__item">
+                  <div class="main-dish__item--description">
+                    <img
+                      src="./assets/images/spaghetti.jpg"
+                      alt=""
+                      class="dish-item--img"
+                    />
+                    <div class="dish-item-desc">
+                      <span>Spagetti & Chicken</span>
+                      <p>
+                        Spagetti spiced with shrimp and chicken to go!... yaay!
+                      </p>
+
+                      <p>
+                        A choice made by legends in the game, specially for you
+                        and your own!
+                      </p>
+                    </div>
+                    <div class="dish-item-price">
+                      <span>$10.20</span>
+                      <button class="add-btn">add</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="main-dish__item">
+                  <div class="main-dish__item--description">
+                    <img
+                      src="./assets/images/spaghetti.jpg"
+                      alt=""
+                      class="dish-item--img"
+                    />
+                    <div class="dish-item-desc">
+                      <span>Spagetti & Chiken Curry</span>
+                      <p>
+                        Spagetti spiced with curry sauce and chicken to go!...
+                        great choice!
+                      </p>
+
+                      <p>
+                        A choice made by legends in the game, specially for you
+                        and your own!
+                      </p>
+                    </div>
+                    <div class="dish-item-price">
+                      <span>$10.20</span>
+                      <button class="add-btn">add</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="main-dish">
+                <div class="main-dish__title">
+                  Spagetti for Veggies
+                </div>
+                <div class="main-dish__item">
+                  <div class="main-dish__item--description">
+                    <img src="./assets/images/spaghetti.jpg" alt="" class="dish-item--img" />
+                    <div class="dish-item-desc">
+                      <span>Spagetti & Chicken</span>
+                      <p>
+                        Spagetti spiced with shrimp and chicken to go!... yaay!
+                      </p>
+              
+                      <p>
+                        A choice made by legends in the game, specially for you
+                        and your own!
+                      </p>
+                    </div>
+                    <div class="dish-item-price">
+                      <span>$10.20</span>
+                      <button class="add-btn">add</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="main-dish__item">
+                  <div class="main-dish__item--description">
+                    <img src="./assets/images/spaghetti.jpg" alt="" class="dish-item--img" />
+                    <div class="dish-item-desc">
+                      <span>Spagetti & Chiken Curry</span>
+                      <p>
+                        Spagetti spiced with curry sauce and chicken to go!...
+                        great choice!
+                      </p>
+              
+                      <p>
+                        A choice made by legends in the game, specially for you
+                        and your own!
+                      </p>
+                    </div>
+                    <div class="dish-item-price">
+                      <span>$10.20</span>
+                      <button class="add-btn">add</button>
+                    </div>
+                  </div>
+                </div>
+            </main>
+          </main>
+        </div>
       </div>
     </div>
   </body>
