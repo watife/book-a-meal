@@ -24,3 +24,12 @@ body {
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   border-radius: 7px;
 }
+
+.ruler {
+  border: 0.7px solid #dfdcdc;
+  margin: 2rem 0;
+}
+
+.legal {
+  font-size: 1.2rem;
+}
