@@ -31,13 +31,13 @@ const MealService = {
     return mealData;
   },
   getAMeal: id => {
-    const foundMeal = dummyData.meals.find(meal => meal.id === id);
+    const foundMeal = dummyData.meals.find(meal => meal.id.toString() === id);
 
     return foundMeal || {};
   },
   modifyMeal: (id, data) => {
     const { meals } = dummyData;
-    const foundMeal = meals.find(meal => meal.id === id);
+    const foundMeal = meals.find(meal => meal.id.toString() === id);
 
     if (data.name) {
       foundMeal.name = data.name;
