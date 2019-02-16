@@ -27,13 +27,35 @@ const MealController = {
     });
   },
   getSingleMeal: (req, res) => {
-    const id = { ...req.params.id };
+    const params = { ...req.params };
 
-    const foundMeal = MealService.getAMeal(id);
+    const foundMeal = MealService.getAMeal(params.id);
 
     return res.status(200).json({
       status: "success",
       data: foundMeal
+    });
+  },
+  modifySingleMeal: (req, res) => {
+    const params = { ...req.params };
+
+    const data = req.body;
+
+    const modifiedMeal = MealService.modifyMeal(params.id, data);
+
+    return res.status(200).json({
+      status: "success",
+      data: modifiedMeal
+    });
+  },
+
+  deleteSingleMeal: (req, res) => {
+    const params = { ...req.params };
+
+    MealService.deleteMeal(params.id);
+
+    return res.status(200).json({
+      status: "success"
     });
   }
 };

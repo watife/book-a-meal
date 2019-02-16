@@ -1,28 +1,28 @@
 export default {
   meals: [
     {
-      id: 1,
+      id: "1",
       name: "Fried Rice",
       size: "Medium",
-      prize: "450"
+      price: "450"
     },
     {
-      id: 2,
+      id: "2",
       name: "Jollof Rice",
       size: "Large",
-      prize: "550"
+      price: "550"
     },
     {
-      id: 3,
+      id: "3",
       name: "Beans",
       size: "small",
-      prize: "150"
+      price: "150"
     },
     {
-      id: 4,
+      id: "4",
       name: "Eba and Semo",
       size: "Large",
-      prize: "300"
+      price: "300"
     }
   ]
 };
