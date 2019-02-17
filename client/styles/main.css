@@ -15,6 +15,26 @@ body {
   font-family: "Roboto Slab", serif;
 }
 
+.content {
+  display: flex;
+}
+
+.sidebar {
+  flex: 0 0 25%;
+  background-color: #ebe9e931;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  /* border-right: 1px solid #e0e0e0; */
+}
+
+.main {
+  flex: 1;
+  /* background-color: aqua; */
+  border-left: 0.7px solid #0000;
+}
+
 .card {
   background-color: #ffff;
   width: 400px;
@@ -40,6 +60,6 @@ a:link {
   color: #6054e9;
 }
 
-.input-group {
-  margin-left: 5rem;
+a p {
+  margin-left: -1rem;
 }

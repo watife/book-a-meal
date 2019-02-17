@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Orders dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:700"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="./styles/admin.css"
+    />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/signin.css" />
+    <link rel="stylesheet" href="./styles/order.css" />
+    <script src="main.js"></script>
+  </head>
+
+  <body>
+    <div class="admin">
+      <div>
+        <div class="container">
+          <div class="user-admin__header">
+            <div class="logo logo-admin">
+              BookMyMeal
+            </div>
+            <div class="avatar">
+              <a href="admin.html"
+                ><img src="./assets/svg/avatar.svg" alt="" class="admin-avatar"
+              /></a>
+            </div>
+          </div>
+
+          <main class="content">
+            <aside class="sidebar">
+              <nav class="navigation">
+                <div class="nav-img__container">
+                  <img
+                    src="./assets/svg/tea.svg"
+                    alt="nav image"
+                    class="nav-img"
+                  />
+                  <p class="nav-img__text">
+                    Let's get down to work! Orders for the day!
+                  </p>
+                </div>
+                <hr class="ruler" />
+
+                <div class="nav-unorder">
+                  <div class="nav-link">Home</div>
+                  <div class="nav-link">
+                    <div>
+                      Menu
+                    </div>
+                  </div>
+                  <div class="active menu">Orders</div>
+                </div>
+              </nav>
+              <div class="legal">
+                &copy; 2019 by Boluwatife. All rights reserved.
+              </div>
+            </aside>
+            <main class="main">
+              <div class="main-header">
+                <p>Orders</p>
+              </div>
+              <hr class="ruler" />
+              <div class="order">
+                <header class="order-header">
+                  <div class="orders-detail">
+                    <p class="order-detail--1">27500</p>
+                    <span>Total Orders</span>
+                  </div>
+                  <div class="orders-detail">
+                    <p class="order-detail--2">27000</p>
+                    <span>Total Delivered</span>
+                  </div>
+                  <div class="orders-detail">
+                    <p class="order-detail--3">500</p>
+                    <span>Total Pending</span>
+                  </div>
+                  <div class="orders-detail">
+                    <p class="order-detail--4">$27500</p>
+                    <span>Total Revenue</span>
+                  </div>
+                </header>
+
+                <main class="order-main__container">
+                  <div class="order-main__header">
+                    <div class="order-table">
+                      Username
+                    </div>
+                    <div class="order-table">
+                      Delivery Time
+                    </div>
+                    <div class="order-table">
+                      Amount
+                    </div>
+                    <div class="order-table">
+                      Status
+                    </div>
+                  </div>
+                  <div class="order-main">
+                    <div class="order-main__wrapper">
+                      <div class="order-main__body">
+                        <div class="order-table order-user">
+                          Boluwatife
+                        </div>
+                        <div class="order-table order-user">
+                          2 hours
+                        </div>
+                        <div class="order-table order-user">
+                          $600
+                        </div>
+                        <div
+                          class="order-table order-user order-status--success"
+                        >
+                          Delivered
+                        </div>
+                      </div>
+                    </div>
+                    <div class="order-main__wrapper">
+                      <div class="order-main__body">
+                        <div class="order-table order-user">
+                          Andela
+                        </div>
+                        <div class="order-table order-user">
+                          6 hours
+                        </div>
+                        <div class="order-table order-user">
+                          $600
+                        </div>
+                        <div
+                          class="order-table order-user order-status--pending"
+                        >
+                          Pending
+                        </div>
+                      </div>
+                    </div>
+                    <div class="order-main__wrapper">
+                      <div class="order-main__body">
+                        <div class="order-table order-user">
+                          Papi Sam
+                        </div>
+                        <div class="order-table order-user">
+                          1 hour
+                        </div>
+                        <div class="order-table order-user">
+                          $1000
+                        </div>
+                        <div
+                          class="order-table order-user order-status--success"
+                        >
+                          Delivered
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </main>
+              </div>
+            </main>
+          </main>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
