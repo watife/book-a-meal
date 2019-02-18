@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>user dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="./styles/admin.css"
+    />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/signin.css" />
+    <script src="main.js"></script>
+  </head>
+
+  <body>
+    <div class="admin">
+      <div>
+        <div class="container">
+          <div class="user-admin__header">
+            <div class="logo logo-admin">
+              BookMyMeal
+            </div>
+            <div class="avatar">
+              <a href="admin.html"
+                ><img src="./assets/svg/avatar.svg" alt="" class="admin-avatar"
+              /></a>
+            </div>
+          </div>
+
+          <main class="content">
+            <aside class="sidebar">
+              <nav class="navigation">
+                <div class="nav-img__container">
+                  <img
+                    src="./assets/svg/tea.svg"
+                    alt="nav image"
+                    class="nav-img"
+                  />
+                  <p class="nav-img__text">
+                    Make order from our awesome menu!
+                  </p>
+                </div>
+                <hr class="ruler" />
+
+                <div class="nav-unorder">
+                  <div class="active menu">Home</div>
+                  <div class="nav-link">
+                    <div>
+                      Menu
+                    </div>
+                  </div>
+                  <div class="nav-link">Order History</div>
+                </div>
+              </nav>
+              <div class="legal">
+                &copy; 2019 by Boluwatife. All rights reserved.
+              </div>
+            </aside>
+            <main class="main">
+              <div class="card card-caterer">
+                <p style="text-align: center; padding: 2rem; font-size: 1.4rem">
+                  Add Menu
+                </p>
+                <div class="input-group">
+                  <label>Menu name</label>
+                  <input type="text" class="input-field" />
+                </div>
+                <br />
+                <div class="input-group">
+                  <label>Menu category</label>
+                  <input type="text" class="input-field" />
+                </div>
+                <br />
+                <div class="input-group">
+                  <label>Menu sub-category</label>
+                  <input type="text" class="input-field" />
+                </div>
+                <br />
+              </div>
+            </main>
+          </main>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
