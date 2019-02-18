@@ -52,7 +52,7 @@ const MealService = {
     return foundMeal;
   },
   deleteMeal: id => {
-    const index = dummyData.meals.findIndex(meal => meal.id.toString() === id);
+    const index = dummyData.meals.findIndex(meal => meal.id === id);
 
     // Replace the item by index.
     dummyData.meals.splice(index, 1);
