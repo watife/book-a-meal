@@ -1,0 +1,86 @@
+.order {
+  width: 90%;
+  margin: 2rem auto;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 7px;
+  border: 1px solid #eeee;
+  padding: 3rem;
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.1);
+}
+
+.orders-detail p {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.orders-detail span {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #a5a5a5;
+}
+
+.order-detail--1 {
+  color: #0000ff;
+}
+
+.order-detail--2 {
+  color: #0e7c2f;
+}
+
+.order-detail--3 {
+  color: #d12f60;
+}
+
+.order-detail--4 {
+  color: #df4a4a;
+}
+
+.order-main__header {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 3px;
+  background-color: #f0eeee;
+  padding: 1rem;
+  font-size: 1.4rem;
+}
+
+.order-main__container {
+  margin-top: 3rem;
+  padding: 1rem;
+  border: 1px solid #eeee;
+}
+
+.order-main__wrapper {
+  display: block;
+  margin: 2rem 0;
+}
+
+.order-main__body {
+  background-color: #fafafa;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-table {
+  width: 25%;
+  text-align: center;
+  overflow: hidden;
+  display: block;
+}
+
+.order-user {
+  font-size: 1.2rem;
+}
+
+.order-status--success {
+  color: #3cb33c;
+}
+
+.order-status--pending {
+  color: #c25494;
+}
