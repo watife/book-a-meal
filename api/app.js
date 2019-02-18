@@ -43,6 +43,17 @@ app.use("/api/v1/meals/", mealRoutes);
  */
 app.use("/api/v1/menu/", menuRoutes);
 
+<<<<<<< HEAD
+/*
+ *
+ * Orders Routes
+ *
+ */
+
+app.use("/api/v1/orders/", ordersRoutes);
+
+=======
+>>>>>>> develop
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
