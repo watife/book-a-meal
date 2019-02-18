@@ -10,8 +10,8 @@ const MenuContoller = {
   },
   addTodayMenu: (req, res) => {
     /*
-        Expect json of the format
-        {
+      *  Expect json of the format
+      *  {
             menu: "an array of meals"
         }
     */

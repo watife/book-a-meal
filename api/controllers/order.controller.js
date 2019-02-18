@@ -10,6 +10,7 @@ const OrderController = {
       data: userOrders
     });
   },
+
   fetchAllOrders: (req, res) => {
     const allOrders = OrderService.getAllOrders();
 
@@ -18,6 +19,7 @@ const OrderController = {
       data: allOrders
     });
   },
+
   addOrder: (req, res) => {
     const body = { ...req.body };
 
@@ -28,6 +30,7 @@ const OrderController = {
       data: addedOrder
     });
   },
+  
   modifyOrder: (req, res) => {
     const body = { ...req.body };
     const params = { ...req.params };
