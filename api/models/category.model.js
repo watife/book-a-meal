@@ -10,7 +10,7 @@ export default (sequelize, DataTypes) => {
   );
   Category.associate = models => {
     // associations can be defined here
-    Category.belongTo(models.Meal, {
+    Category.belongsTo(models.Meal, {
       foreignKey: "meal_id"
     });
   };

@@ -12,6 +12,7 @@ import bodyParser from "body-parser";
 import mealRoutes from "./routes/meal.routes";
 import menuRoutes from "./routes/menu.routes";
 import ordersRoutes from "./routes/order.routes";
+import adminRoutes from "./routes/admin.routes";
 
 const hostname = "127.0.0.1";
 const port = 8000;
@@ -51,6 +52,13 @@ app.use("/api/v1/menu/", menuRoutes);
  */
 
 app.use("/api/v1/orders/", ordersRoutes);
+
+/*
+ *
+ * Admin Routes
+ *
+ */
+app.use("/api/v1/admin/", adminRoutes);
 
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);

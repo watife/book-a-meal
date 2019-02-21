@@ -11,15 +11,15 @@ export default (sequelize, DataTypes) => {
   );
   Order.associate = models => {
     // associations can be defined here
-    Order.belongTo(models.Meal, {
+    Order.belongsTo(models.Meal, {
       foreignKey: "meal_id"
     });
 
-    Order.belongTo(models.Customer, {
+    Order.belongsTo(models.Customer, {
       foreignKey: "customer_id"
     });
 
-    Order.belongTo(models.Menu, {
+    Order.belongsTo(models.Menu, {
       foreignKey: "menu_id"
     });
   };
