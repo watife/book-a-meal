@@ -12,11 +12,11 @@ export default (sequelize, DataTypes) => {
   Menu.associate = models => {
     // associations can be defined here
 
-    Menu.hasMany(models.Admin, {
+    Menu.belongsTo(models.Admin, {
       foreignKey: "admin_id"
     });
 
-    Menu.belongTo(models.Meal, {
+    Menu.belongsTo(models.Meal, {
       foreignKey: "meal_id"
     });
 

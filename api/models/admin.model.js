@@ -10,7 +10,7 @@ export default (sequelize, DataTypes) => {
   );
   Admin.associate = models => {
     // associations can be defined here
-    Admin.belongTo(models.Menu, {
+    Admin.hasMany(models.Menu, {
       foreignKey: "admin_id"
     });
   };

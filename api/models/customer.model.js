@@ -45,7 +45,7 @@ export default (sequelize, DataTypes) => {
   );
   Customer.associate = models => {
     // associations can be defined here
-    Customer.hasMany(models.Orders, {
+    Customer.hasMany(models.Order, {
       foreignKey: "customer_id"
     });
   };
