@@ -1,10 +1,27 @@
-export default class Order {
-  constructor() {
+export default (sequelize, DataTypes) => {
+  const Order = sequelize.define(
+    "Order",
+    {
+      meal_id: DataTypes.INTEGER,
+      customer_id: DataTypes.INTEGER,
+      menu_id: DataTypes.INTEGER,
+      date: DataTypes.DATE
+    },
+    {}
+  );
+  Order.associate = models => {
+    // associations can be defined here
+    Order.belongTo(models.Meal, {
+      foreignKey: "meal_id"
+    });
 
-    this.id = null;
-    this.day = null;
-    this.userId = null;
-    this.meals = null;
-    
-  }
-}
+    Order.belongTo(models.Customer, {
+      foreignKey: "customer_id"
+    });
+
+    Order.belongTo(models.Menu, {
+      foreignKey: "menu_id"
+    });
+  };
+  return Order;
+};

@@ -27,7 +27,6 @@ const OrderService = {
       return newOrder;
     });
     return orders;
-    
   },
   modifyOrder: (id, data) => {
     /*
