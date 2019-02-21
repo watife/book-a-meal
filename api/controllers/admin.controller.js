@@ -20,8 +20,6 @@ class AdminController {
       })
     );
   }
-
-  static;
 }
 
 export default AdminController;
