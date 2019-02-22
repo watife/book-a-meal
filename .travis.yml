@@ -1,11 +1,17 @@
 language: node_js
-node_js:
-  - "stable"
+jobs:
+  include:
+    - stage: test
+      node_js:
+        - stable
+      env: DIALECT=postgres SEQUELIZE=latest SEQ_PORT=54320
 before_install: cd api
+install:
+  - npm install sequelize
+  - npm install
 cache:
   directories:
     - node_modules
-install: npm install
 services:
   - postgresql
 # env:
@@ -13,7 +19,7 @@ services:
 before_script:
   - psql -c 'create database book_my_meal_test;' -U postgres
   - psql -c "CREATE USER watife WITH PASSWORD '@danielNejo';" -U postgres
-#   - sequelize db:migrate
+  - sequelize db:migrate
 #   - sequelize db:seed:all
 script:
   - npm test
