@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon --exec babel-node app.js",
-    "test": "nyc --require @babel/register mocha test/*.js --exit -w",
+    "test": "nyc --require @babel/register mocha test/*.js --exit",
     "coverage": "nyc npm test && nyc --require @babel/register report --reporter=text-lcov | coveralls"
   },
   "author": "boluwatife fakorede",
