@@ -4,5 +4,9 @@
   "rules": {
     "prettier/prettier": ["error"],
     "no-console": "off"
+  },
+  "env": {
+    "node": true,
+    "mocha": true
   }
 }

@@ -32,16 +32,21 @@ class AdminController {
 
     return Admin.create(data)
       .then(admin => {
-        console.log(admin);
         if (!admin) {
           return res.status(400).json({
             status: "failed",
             admin: "Admin wasn't created successfully"
           });
         }
+        // create a new admin that doesn't send back the password
+        const responseData = {
+          id: admin.id,
+          name: admin.name,
+          email: admin.email
+        };
         return res.status(201).json({
           status: "success",
-          admin
+          admin: responseData
         });
       })
       .catch(error => res.status(400).json(error));
@@ -64,9 +69,15 @@ class AdminController {
             admin: "Admin with the specified Id not found"
           });
         }
+        // create new admin and remove the password fields
+        const newAdmin = {
+          id: admin.id,
+          name: admin.name,
+          email: admin.email
+        };
         return res.status(200).json({
           status: "success",
-          admin
+          admin: newAdmin
         });
       })
       .catch(error => res.status(400).json(error));
@@ -82,15 +93,23 @@ class AdminController {
     Admin.findAll()
       .then(admins => {
         if (!admins) {
-          return res.status(400).json({
+          return res.status(200).json({
             status: "failed",
             admin: "no admin was found"
           });
         }
 
+        // create new admin and remove the password fields
+        const newAdmins = admins.map(admin => {
+          return {
+            id: admin.id,
+            name: admin.name,
+            email: admin.email
+          };
+        });
         return res.status(200).json({
           status: "success",
-          admins
+          admins: newAdmins
         });
       })
       .catch(error => res.status(400).json(error));

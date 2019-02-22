@@ -15,7 +15,7 @@ import ordersRoutes from "./routes/order.routes";
 import adminRoutes from "./routes/admin.routes";
 
 const hostname = "127.0.0.1";
-const port = 8000;
+const port = process.env.PORT || 8000;
 const app = express(); // setup express application
 const server = http.createServer(app);
 
@@ -60,6 +60,6 @@ app.use("/api/v1/orders/", ordersRoutes);
  */
 app.use("/api/v1/admin/", adminRoutes);
 
-server.listen(port, hostname, () => {
+module.exports = server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
