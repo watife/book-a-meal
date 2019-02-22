@@ -17,9 +17,8 @@ services:
 # env:
 #   - NODE_ENV=development
 before_script:
-  - psql -c 'create database book_my_meal_test;' -U postgres
+  - psql -c 'create database book_my_meal;' -U postgres
   - psql -c "CREATE USER watife WITH PASSWORD '@danielNejo';" -U postgres
-  - sequelize db:migrate
 #   - sequelize db:seed:all
 script:
   - npm test
