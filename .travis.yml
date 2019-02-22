@@ -6,7 +6,8 @@ jobs:
         - stable
       env: DIALECT=postgres SEQUELIZE=latest SEQ_PORT=54320
 before_install: cd api
-install: -sudo npm install -g sequelize-cli
+install:
+  - sudo npm install -g sequelize-cli
   - npm install
 cache:
   directories:
@@ -18,6 +19,7 @@ services:
 before_script:
   - psql -c 'create database book_my_meal;' -U postgres
   - psql -c "CREATE USER watife WITH PASSWORD '@danielNejo';" -U postgres
+  - sequelize db:migrate
 #   - sequelize db:seed:all
 script:
   - npm test
