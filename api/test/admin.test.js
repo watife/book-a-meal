@@ -1,8 +1,8 @@
-import chai from "chai";
-import chaiHttp from "chai-http";
-import app from "../app";
+const chai = require("chai");
+const chaiHttp = require("chai-http");
+const app = require("../app");
 
-import model from "../models";
+const model = require("../models");
 
 const { Admin } = model;
 
@@ -28,6 +28,9 @@ describe("Admins", () => {
       .post("/api/v1/admin")
       .send({ name: "Tayo", email: "tayo@gmail.com", password: "fakoo.com" })
       .end((err, res) => {
+        if (err) {
+          err.should.be.a("object");
+        }
         res.should.have.status(201);
         // eslint-disable-next-line no-unused-expressions
         res.should.be.json;
@@ -101,15 +104,40 @@ describe("Admins", () => {
   });
   /*
    *
-   *Test for the get an Admin by Id request
+   *Test for the update of an Admin by Id request
    *
    */
-  it("should DELETE a SINGLE admin on /admin/<id> DELETE", done => {
+  it("should update a SINGLE blob on /blob/<id> PUT", done => {
     Admin.create({
       name: "AdminTest",
       email: "admin@gmail.com",
       password: "testestcreate"
     }).then(data => {
+      const { id } = data.dataValues;
+
+      chai
+        .request(app)
+        .put(`/api/v1/admin/${id}`)
+        .send({ name: "Spider" })
+        .end((error, response) => {
+          response.should.have.status(200);
+          // eslint-disable-next-line no-unused-expressions
+          response.should.be.json;
+          response.body.should.be.a("object");
+          response.body.should.have.property("status");
+          response.body.should.have.property("admin");
+          response.body.admin[0].should.equal(1);
+          done();
+        });
+    });
+  });
+  /*
+   *
+   *Test for the get an Admin by Id request
+   *
+   */
+  it("should DELETE a SINGLE admin on /admin/<id> DELETE", done => {
+    Admin.findOne({ where: { name: "Spider" } }).then(data => {
       const { id } = data.dataValues;
       chai
         .request(app)
