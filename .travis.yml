@@ -2,14 +2,17 @@ language: node_js
 node_js:
   - "stable"
 before_install: cd api
+cache:
+  directories:
+    - node_modules
 install: npm install
-# services:
-#   - postgresql
+services:
+  - postgresql
 # env:
 #   - NODE_ENV=development
-# before_script:
-#   - psql -c 'create database book_my_meal_test;' -U postgres
-#   - psql -c "CREATE USER watife WITH PASSWORD '@danielNejo';" -U postgres
+before_script:
+  - psql -c 'create database book_my_meal_test;' -U postgres
+  - psql -c "CREATE USER watife WITH PASSWORD '@danielNejo';" -U postgres
 #   - sequelize db:migrate
 #   - sequelize db:seed:all
 script:
