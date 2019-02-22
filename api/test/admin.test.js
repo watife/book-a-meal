@@ -101,14 +101,40 @@ describe("Admins", () => {
   });
   /*
    *
-   *Test for the get an Admin by Id request
+   *Test for the modify an Admin by Id request
+   *
+   */
+  it("should MODIFY a SINGLE admin on /admin/<id> PUT", done => {
+    Admin.create({
+      name: "Adminput",
+      email: "admin@gmail.com",
+      password: "testestcreate"
+    }).then(data => {
+      const { id } = data.dataValues;
+      chai
+        .request(app)
+        .put(`/api/v1/admin/${id}`)
+        .send({ name: "adminput" })
+        .end((err, res) => {
+          res.should.have.status(200);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.be.a("object");
+          res.body.should.have.property("status");
+          res.body.should.have.property("admin");
+          res.body.admin[0].should.equal(1);
+          done();
+        });
+    });
+  });
+  /*
+   *
+   *Test for the delete an Admin by Id request
    *
    */
   it("should DELETE a SINGLE admin on /admin/<id> DELETE", done => {
-    Admin.create({
-      name: "AdminTest",
-      email: "admin@gmail.com",
-      password: "testestcreate"
+    Admin.find({
+      name: "admininput"
     }).then(data => {
       const { id } = data.dataValues;
       chai
