@@ -1,16 +1,20 @@
+/* eslint-disable import/no-dynamic-require */
 import fs from "fs";
 import path from "path";
 import Sequelize from "sequelize";
 
-const basename = path.basename(__filename);
+// import dotenv from "dotenv";
+
+// dotenv.config();
+const basename = path.basename(module.filename);
 const env = process.env.NODE_ENV || "development";
-// eslint-disable-next-line import/no-dynamic-require
 const config = require(`${__dirname}/../.config/config.json`)[env];
+console.log(config);
 const db = {};
 
 let sequelize;
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+  sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
   sequelize = new Sequelize(
     config.database,
@@ -21,11 +25,10 @@ if (config.use_env_variable) {
 }
 
 fs.readdirSync(__dirname)
-  .filter(file => {
-    return (
+  .filter(
+    file =>
       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-    );
-  })
+  )
   .forEach(file => {
     const model = sequelize.import(path.join(__dirname, file));
     db[model.name] = model;
