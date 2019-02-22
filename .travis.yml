@@ -7,7 +7,7 @@ jobs:
       env: DIALECT=postgres SEQUELIZE=latest SEQ_PORT=54320
 before_install: cd api
 install:
-  - npm install -g sequelize
+  - npm install -g sequelize-cli
   - npm install
 cache:
   directories:
@@ -20,7 +20,7 @@ before_script:
   - psql -c 'create database book_my_meal_test;' -U postgres
   - psql -c "CREATE USER watife WITH PASSWORD '@danielNejo';" -U postgres
   - sequelize db:migrate
-#   - sequelize db:seed:all
+  # - sequelize db:seed:all
 script:
   - npm test
 # Send coverage data to Coveralls
