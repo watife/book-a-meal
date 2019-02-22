@@ -3,15 +3,17 @@ node_js:
   - "stable"
 before_install: cd api
 install: npm install
-services:
-  - postgresql
-env:
-  - NODE_ENV=development
-before_script:
-  - psql -c 'create database book_my_meal_test;' -U postgres
-  - psql -c "CREATE USER watife WITH PASSWORD '@danielNejo';" -U postgres
-  - sequelize db:migrate
-  - sequelize db:seed:all
-script: npm test
-after_success: npm run coverage
+# services:
+#   - postgresql
+# env:
+#   - NODE_ENV=development
+# before_script:
+#   - psql -c 'create database book_my_meal_test;' -U postgres
+#   - psql -c "CREATE USER watife WITH PASSWORD '@danielNejo';" -U postgres
+#   - sequelize db:migrate
+#   - sequelize db:seed:all
+script:
+  - npm test
+# Send coverage data to Coveralls
+# after_script: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
 # after_success: npm run coverage
