@@ -7,7 +7,7 @@ jobs:
       env: DIALECT=postgres SEQUELIZE=latest SEQ_PORT=54320
 before_install: cd api
 install:
-  - npm install sequelize
+  - npm install -g sequelize
   - npm install
 cache:
   directories:
