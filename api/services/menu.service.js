@@ -5,6 +5,8 @@ const MenuService = {
   getTodayMenu: () => {
     const todayMenu = dummyData.menu[dummyData.menu.length - 1];
 
+    // check to make sure that the menu is
+
     return todayMenu;
   },
   addMenu: menu => {
@@ -20,9 +22,15 @@ const MenuService = {
 
     menuData.day = Date.now();
 
-    dummyData.menu.push(menuData);
+    const data = {
+      id: menuData.id,
+      day: menuData.day,
+      menu
+    };
 
-    return menuData;
+    dummyData.menu.push(data);
+
+    return data;
   },
   getAllMenu: () => {
     /*

@@ -39,17 +39,14 @@ const MealService = {
     const { meals } = dummyData;
     const foundMeal = meals.find(meal => meal.id.toString() === id);
 
-    if (data.name) {
-      foundMeal.name = data.name;
-    }
-    if (data.size) {
-      foundMeal.size = data.size;
-    }
+    const menuData = {
+      id: foundMeal.id,
+      name: data.name ? data.name : foundMeal.name,
+      size: data.size ? data.size : foundMeal.size,
+      price: data.price ? data.price : foundMeal.price
+    };
 
-    if (data.price) {
-      foundMeal.price = data.price;
-    }
-    return foundMeal;
+    return menuData;
   },
   deleteMeal: id => {
     const index = dummyData.meals.findIndex(meal => meal.id.toString() === id);

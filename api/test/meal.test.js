@@ -101,7 +101,7 @@ describe("All API test for MEAL endpoints", () => {
             res.should.have.property("data");
             res.data.should.be.a("object");
             res.data.should.have.property("name");
-            res.data.should.have.property("prize");
+            res.data.should.have.property("price");
             res.data.should.have.property("size");
             res.data.name.should.equal("spagetti bols");
             res.data.price.should.equal(8000);
@@ -113,14 +113,24 @@ describe("All API test for MEAL endpoints", () => {
   it("should delete a SINGLE Meal on /meals/<id> DELETE", done => {
     chai
       .request(app)
-      .delete(`${PREFIX}/${1}`)
-      .end((error, res) => {
-        res.should.have.status(200);
-        res.should.be.json;
-        res.body.should.be.a("object");
-        res.body.should.have.property("status");
-        res.body.status.should.equal("success");
-        done();
+      .post(PREFIX)
+      .send({ name: "spagetti native", prize: 7000, size: "large" })
+      .end((err, response) => {
+        const { id } = response.body.data;
+        chai
+          .request(app)
+          .delete(`${PREFIX}/${id}`)
+          .end((error, res) => {
+            if (error) {
+              error.should.have.status(400);
+            }
+            res.should.have.status(200);
+            res.should.be.json;
+            res.body.should.be.a("object");
+            res.body.should.have.property("status");
+            res.body.status.should.equal("success");
+            done();
+          });
       });
   });
 });
