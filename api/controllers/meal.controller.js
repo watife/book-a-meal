@@ -28,7 +28,6 @@ const MealController = {
   },
   getSingleMeal: (req, res) => {
     const params = { ...req.params };
-    console.log(params);
 
     const foundMeal = MealService.getAMeal(params.id);
 
