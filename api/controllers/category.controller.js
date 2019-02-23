@@ -38,7 +38,7 @@ class CategroyController {
     try {
       const { name } = req.body;
 
-      const category = await Meal.create({
+      const category = await Category.create({
         name,
         catererId: req.caterer.id
       });

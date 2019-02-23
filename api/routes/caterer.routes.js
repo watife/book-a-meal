@@ -13,7 +13,7 @@ const router = Router();
 router.post(
   "/",
   AuthValidate.validateRegister,
-  AuthController.verifyAdminToken,
+  //   AuthController.verifyAdminToken,
   CatererController.catererRegister
 );
 router.post(
