@@ -1,7 +1,7 @@
 import Sequelize from "sequelize";
 import sequelize from "../utils/database";
 
-const Category = sequelize.define("category", {
+const OrderMeal = sequelize.define("orderMeal", {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -12,7 +12,11 @@ const Category = sequelize.define("category", {
     type: Sequelize.INTEGER,
     allowNull: false
   },
-  catererId: {
+  quantity: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  userId: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
@@ -20,4 +24,4 @@ const Category = sequelize.define("category", {
   updatedAt: Sequelize.DATEONLY
 });
 
-export default Category;
+export default OrderMeal;
