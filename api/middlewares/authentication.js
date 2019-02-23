@@ -48,6 +48,37 @@ class AuthController {
       });
     }
   }
+
+  static async verifyDoubleToken(req, res, next) {
+    const token = req.headers.authorization;
+    if (!token) {
+      return res.status(401).json({
+        status: "error",
+        message: "Unauthorized request"
+      });
+    }
+    const jwtToken = token.split(" ")[1];
+    try {
+      const decoded = await jwt.verify(jwtToken, secret);
+      if (!decoded.isCaterer || !decoded.isCustomer) {
+        throw new Error("Unauthorized request");
+      }
+      if (decoded.caterer) {
+        req.caterer = decoded.caterer;
+        next();
+      }
+      if (decoded.customer) {
+        req.caterer = decoded.caterer;
+        next();
+      }
+      return true;
+    } catch (error) {
+      return res.status(401).json({
+        status: "error",
+        message: error.message
+      });
+    }
+  }
 }
 
 export default AuthController;

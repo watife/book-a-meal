@@ -1,19 +1,16 @@
 import Joi from "joi";
 
-class AuthValidate {
-  static async validateRegister(req, res, next) {
+class CatererValidate {
+  static async validateMeal(req, res, next) {
     try {
       const schema = {
         name: Joi.string().required(),
-        email: Joi.string()
-          .email()
+        price: Joi.number()
+          .min(1)
           .required(),
-        phone: Joi.number()
-          .min(11)
-          .required(),
-        password: Joi.string()
-          .min(8)
-          .required()
+        quantity: Joi.string().required(),
+        imageUrl: Joi.string().required(),
+        categoryId: Joi.number().required()
       };
       await Joi.validate(req.body, schema);
       next();
@@ -27,15 +24,14 @@ class AuthValidate {
     }
   }
 
-  static async validateLogin(req, res, next) {
+  static async validateMealUpdate(req, res, next) {
     try {
       const schema = {
-        email: Joi.string()
-          .email()
-          .required(),
-        password: Joi.string()
-          .min(8)
-          .required()
+        name: Joi.string(),
+        price: Joi.number().min(1),
+        quantity: Joi.string(),
+        imageUrl: Joi.string(),
+        categoryId: Joi.number()
       };
       await Joi.validate(req.body, schema);
       next();
@@ -50,4 +46,4 @@ class AuthValidate {
   }
 }
 
-export default AuthValidate;
+export default CatererValidate;

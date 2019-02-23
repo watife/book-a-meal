@@ -12,6 +12,10 @@ const Menu = sequelize.define("menu", {
     type: Sequelize.INTEGER,
     allowNull: false
   },
+  quantity: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
   catererId: {
     type: Sequelize.INTEGER,
     allowNull: false
