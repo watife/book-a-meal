@@ -53,10 +53,10 @@ Order.belongsTo(Caterer, { constraints: true, onDelete: "CASCADE" });
 Meal.belongsTo(Caterer, { constraints: true, onDelete: "CASCADE" });
 Menu.belongsTo(Caterer, { constraints: true, onDelete: "CASCADE" });
 OrderMeal.belongsTo(Meal, { constraints: true, onDelete: "CASCADE" });
-Category.belongsTo(Meal, { constraints: true, onDelete: "CASCADE" });
+Category.hasMany(Meal, { constraints: true, onDelete: "CASCADE" });
+Meal.belongsTo(Category);
 Caterer.hasMany(Order);
 Caterer.hasMany(Menu);
-Meal.hasMany(Category);
 
 sequelize
   .sync()

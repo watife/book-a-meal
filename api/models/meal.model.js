@@ -24,6 +24,10 @@ const Meal = sequelize.define("meal", {
     type: Sequelize.STRING,
     allowNull: false
   },
+  categoryId: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
   catererId: {
     type: Sequelize.INTEGER,
     allowNull: false

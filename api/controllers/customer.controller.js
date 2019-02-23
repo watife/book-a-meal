@@ -54,9 +54,9 @@ class CustomerController {
         caterer: customerToSave
       });
     } catch (error) {
-      return res.status(500).json({
+      return res.status(400).json({
         status: "error",
-        caterer: error.message
+        message: error.message
       });
     }
   }
@@ -105,7 +105,7 @@ class CustomerController {
     } catch (error) {
       return res.status(400).json({
         status: "error",
-        caterer: error.message
+        message: error.message
       });
     }
   }
@@ -140,7 +140,7 @@ class CustomerController {
     } catch (error) {
       return res.status(400).json({
         status: "error",
-        caterer: error.message
+        message: error.message
       });
     }
   }
