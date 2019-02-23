@@ -24,6 +24,7 @@ import menuRoutes from "./routes/menu.routes";
 import ordersRoutes from "./routes/order.routes";
 import catererRoutes from "./routes/caterer.routes";
 import customerRoutes from "./routes/customer.routes";
+import categoryRoutes from "./routes/category.routes";
 
 const hostname = "127.0.0.1";
 const port = process.env.PORT || 8000;
@@ -105,5 +106,12 @@ app.use("/api/v1/caterer/", catererRoutes);
  *
  */
 app.use("/api/v1/customer/", customerRoutes);
+
+/*
+ *
+ * Category Routes
+ *
+ */
+app.use("/api/v1/category/", categoryRoutes);
 
 export default app;

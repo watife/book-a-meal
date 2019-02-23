@@ -22,7 +22,7 @@ class MealController {
     } catch (error) {
       return res.status(400).json({
         status: "error",
-        meal: error.message
+        message: error.message
       });
     }
   }
