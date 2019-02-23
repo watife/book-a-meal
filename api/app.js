@@ -54,3 +54,5 @@ app.use("/api/v1/orders/", ordersRoutes);
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
+
+export default app;
