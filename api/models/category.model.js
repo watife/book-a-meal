@@ -8,10 +8,6 @@ const Category = sequelize.define("category", {
     allowNull: false,
     primaryKey: true
   },
-  mealId: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
   catererId: {
     type: Sequelize.INTEGER,
     allowNull: false

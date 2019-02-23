@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import secret from "../utils/jwt";
 import Caterer from "../models/caterer.model";
-import Customer from "../models/customer.model";
 
 class CatererController {
   /*
@@ -53,7 +52,7 @@ class CatererController {
     } catch (error) {
       return res.status(500).json({
         status: "error",
-        caterer: error.message
+        message: error.message
       });
     }
   }
@@ -102,7 +101,7 @@ class CatererController {
     } catch (error) {
       return res.status(400).json({
         status: "error",
-        caterer: error.message
+        message: error.message
       });
     }
   }
@@ -137,7 +136,7 @@ class CatererController {
     } catch (error) {
       return res.status(400).json({
         status: "error",
-        caterer: error.message
+        message: error.message
       });
     }
   }
@@ -152,7 +151,7 @@ class CatererController {
     try {
       const caterers = await Caterer.findAll();
 
-      if (!caterers) {
+      if (!caterers[0]) {
         throw new Error("No caterer was found");
       }
       // create new admin and remove the password fields
@@ -171,7 +170,7 @@ class CatererController {
     } catch (error) {
       return res.status(400).json({
         status: "error",
-        caterer: error.message
+        message: error.message
       });
     }
   }
@@ -193,12 +192,12 @@ class CatererController {
       }
       return res.status(200).json({
         status: "success",
-        caterer
+        caterer: "caterer successfully modified"
       });
     } catch (error) {
       return res.status(400).json({
         status: "error",
-        caterer: error.message
+        message: error.message
       });
     }
   }
@@ -220,12 +219,12 @@ class CatererController {
       }
       return res.status(200).json({
         status: "success",
-        caterer
+        caterer: "Caterer successfully deleted"
       });
     } catch (error) {
       return res.status(400).json({
         status: "error",
-        caterer: error.message
+        message: error.message
       });
     }
   }
