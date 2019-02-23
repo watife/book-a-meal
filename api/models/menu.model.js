@@ -1,28 +1,23 @@
-export default (sequelize, DataTypes) => {
-  const Menu = sequelize.define(
-    "Menu",
-    {
-      meal_id: DataTypes.INTEGER,
-      admin_id: DataTypes.INTEGER,
-      date: DataTypes.DATE,
-      name: DataTypes.STRING
-    },
-    {}
-  );
-  Menu.associate = models => {
-    // associations can be defined here
+import Sequelize from "sequelize";
+import sequelize from "../utils/database";
 
-    Menu.belongsTo(models.Admin, {
-      foreignKey: "admin_id"
-    });
+const Menu = sequelize.define("menu", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+  },
+  mealId: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  catererId: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  createdAt: Sequelize.DATEONLY,
+  updatedAt: Sequelize.DATEONLY
+});
 
-    Menu.belongsTo(models.Meal, {
-      foreignKey: "meal_id"
-    });
-
-    Menu.hasMany(models.Order, {
-      foreignKey: "menu_id"
-    });
-  };
-  return Menu;
-};
+export default Menu;

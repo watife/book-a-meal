@@ -1,27 +1,35 @@
-export default (sequelize, DataTypes) => {
-  const Meal = sequelize.define(
-    "Meal",
-    {
-      name: DataTypes.STRING,
-      size: DataTypes.STRING,
-      price: DataTypes.INTEGER
-    },
-    {}
-  );
-  Meal.associate = models => {
-    // associations can be defined here
+import Sequelize from "sequelize";
+import sequelize from "../utils/database";
 
-    Meal.hasMany(models.Category, {
-      foreignKey: "meal_id"
-    });
+const Meal = sequelize.define("meal", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+  },
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  price: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  quantity: {
+    type: Sequelize.INTEGER,
+    default: null
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  catererId: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  createdAt: Sequelize.DATEONLY,
+  updatedAt: Sequelize.DATEONLY
+});
 
-    Meal.hasMany(models.Menu, {
-      foreignKey: "meal_id"
-    });
-
-    Meal.hasMany(models.Order, {
-      foreignKey: "meal_id"
-    });
-  };
-  return Meal;
-};
+export default Meal;

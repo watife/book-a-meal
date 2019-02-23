@@ -1,23 +1,32 @@
 import Sequelize from "sequelize";
 import sequelize from "../utils/database";
 
-const Category = sequelize.define("category", {
+const Caterer = sequelize.define("caterer", {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true
   },
-  mealId: {
-    type: Sequelize.INTEGER,
+  name: {
+    type: Sequelize.STRING,
     allowNull: false
   },
-  catererId: {
-    type: Sequelize.INTEGER,
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true
+  },
+  phone: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  password: {
+    type: Sequelize.STRING,
     allowNull: false
   },
   createdAt: Sequelize.DATEONLY,
   updatedAt: Sequelize.DATEONLY
 });
 
-export default Category;
+export default Caterer;

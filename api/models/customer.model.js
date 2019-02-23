@@ -1,53 +1,32 @@
-export default (sequelize, DataTypes) => {
-  const Customer = sequelize.define(
-    "Customer",
-    {
-      name: {
-        type: DataTypes.STRING,
-        allowNull: {
-          args: false,
-          msg: "Please enter your name"
-        }
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: {
-          args: false,
-          msg: "Please enter your email address"
-        },
-        unique: {
-          args: true,
-          msg: "Email already exists"
-        },
-        validate: {
-          isEmail: {
-            args: true,
-            msg: "Please enter a valid email address"
-          }
-        }
-      },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: {
-          args: false,
-          msg: "Please enter a password"
-        },
-        validate: {
-          isNotShort: value => {
-            if (value.length < 8) {
-              throw new Error("Password should be at least 8 characters");
-            }
-          }
-        }
-      }
-    },
-    {}
-  );
-  Customer.associate = models => {
-    // associations can be defined here
-    Customer.hasMany(models.Order, {
-      foreignKey: "customer_id"
-    });
-  };
-  return Customer;
-};
+import Sequelize from "sequelize";
+import sequelize from "../utils/database";
+
+const Customer = sequelize.define("customer", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+  },
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true
+  },
+  phone: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  createdAt: Sequelize.DATEONLY,
+  updatedAt: Sequelize.DATEONLY
+});
+
+export default Customer;

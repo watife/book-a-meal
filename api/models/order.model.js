@@ -1,27 +1,39 @@
-export default (sequelize, DataTypes) => {
-  const Order = sequelize.define(
-    "Order",
-    {
-      meal_id: DataTypes.INTEGER,
-      customer_id: DataTypes.INTEGER,
-      menu_id: DataTypes.INTEGER,
-      date: DataTypes.DATE
-    },
-    {}
-  );
-  Order.associate = models => {
-    // associations can be defined here
-    Order.belongsTo(models.Meal, {
-      foreignKey: "meal_id"
-    });
+import Sequelize from "sequelize";
+import sequelize from "../utils/database";
 
-    Order.belongsTo(models.Customer, {
-      foreignKey: "customer_id"
-    });
+const Order = sequelize.define("order", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+  },
+  orderId: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  total: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  billing_address: {
+    type: Sequelize.TEXT,
+    allowNull: false
+  },
+  delivery_status: {
+    type: Sequelize.INTEGER,
+    default: 0
+  },
+  catererId: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  userId: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  createdAt: Sequelize.DATEONLY,
+  updatedAt: Sequelize.DATEONLY
+});
 
-    Order.belongsTo(models.Menu, {
-      foreignKey: "menu_id"
-    });
-  };
-  return Order;
-};
+export default Order;

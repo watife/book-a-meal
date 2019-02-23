@@ -2,6 +2,16 @@ import http from "http";
 import express from "express";
 import logger from "morgan";
 import bodyParser from "body-parser";
+import sequelize from "./utils/database";
+
+// import models
+import Customer from "./models/customer.model";
+import Caterer from "./models/caterer.model";
+import Meal from "./models/meal.model";
+import Menu from "./models/menu.model";
+import Order from "./models/order.model";
+import OrderMeal from "./models/orderMeal.model";
+import Category from "./models/category.model";
 
 /*
  *
@@ -12,7 +22,7 @@ import bodyParser from "body-parser";
 import mealRoutes from "./routes/meal.routes";
 import menuRoutes from "./routes/menu.routes";
 import ordersRoutes from "./routes/order.routes";
-import adminRoutes from "./routes/admin.routes";
+import catererRoutes from "./routes/caterer.routes";
 
 const hostname = "127.0.0.1";
 const port = process.env.PORT || 8000;
@@ -30,6 +40,34 @@ app.get("/", (req, res) =>
     message: "Welcome to the default API route"
   })
 );
+
+/*
+ *
+ * MODELS ASSOCIATION
+ *
+ */
+Customer.hasMany(Order, { constraints: true, onDelete: "CASCADE" });
+Customer.hasMany(OrderMeal, { constraints: true, onDelete: "CASCADE" });
+Order.belongsTo(Caterer, { constraints: true, onDelete: "CASCADE" });
+Meal.belongsTo(Caterer, { constraints: true, onDelete: "CASCADE" });
+Menu.belongsTo(Caterer, { constraints: true, onDelete: "CASCADE" });
+OrderMeal.belongsTo(Meal, { constraints: true, onDelete: "CASCADE" });
+Category.belongsTo(Meal, { constraints: true, onDelete: "CASCADE" });
+Caterer.hasMany(Order);
+Caterer.hasMany(Menu);
+Meal.hasMany(Category);
+
+sequelize
+  .sync()
+  .then(() => {
+    console.log("DB Connection has been established");
+    server.listen(port, hostname, () => {
+      console.log(`Server running at http://${hostname}:${port}/`);
+    });
+  })
+  .catch(err => {
+    console.error("Unable to connect to the database:", err);
+  });
 
 /*
  *
@@ -58,8 +96,6 @@ app.use("/api/v1/orders/", ordersRoutes);
  * Admin Routes
  *
  */
-app.use("/api/v1/admin/", adminRoutes);
+app.use("/api/v1/caterer/", catererRoutes);
 
-module.exports = server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+export default app;
