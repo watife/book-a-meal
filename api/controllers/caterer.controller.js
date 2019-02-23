@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import secret from "../utils/jwt";
 import Caterer from "../models/caterer.model";
+import Customer from "../models/customer.model";
 
 class CatererController {
   /*
@@ -14,6 +15,13 @@ class CatererController {
     try {
       const { name, email, password, phone } = req.body;
       const hash = await bcrypt.hash(password, 10);
+
+      // check that the email doesn't exist
+      const emailCheck = await Caterer.findOne({ where: { email } });
+
+      if (emailCheck) {
+        throw new Error("Caterer with this email already exists");
+      }
 
       const newCaterer = await Caterer.create({
         name,
@@ -63,13 +71,13 @@ class CatererController {
       const caterer = await Caterer.findOne({ where: { email } });
 
       if (!caterer) {
-        throw new Error({ caterer: "Invalid email or password" });
+        throw new Error("Invalid email or password");
       }
 
       const Comparehash = await bcrypt.compare(password, caterer.password);
 
       if (!Comparehash) {
-        throw new Error({ caterer: "Invalid email or password" });
+        throw new Error("Invalid email or password");
       }
 
       const catererToSave = {
@@ -112,7 +120,7 @@ class CatererController {
       const caterer = await Caterer.findById(id);
 
       if (!caterer) {
-        throw new Error(`Caterer specified does not exist`);
+        throw new Error("Caterer specified does not exist");
       }
 
       const safeCaterer = {
@@ -145,7 +153,7 @@ class CatererController {
       const caterers = await Caterer.findAll();
 
       if (!caterers) {
-        throw new Error(`No caterer was found`);
+        throw new Error("No caterer was found");
       }
       // create new admin and remove the password fields
       const newAdmins = caterers.map(admin => {
