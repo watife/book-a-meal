@@ -34,7 +34,7 @@ const MenuContoller = {
     const data = req.body;
     const modifiedMenu = MenuService.modifyMenu(data);
 
-    return res.status(201).json({
+    return res.status(200).json({
       status: "success",
       data: modifiedMenu
     });
