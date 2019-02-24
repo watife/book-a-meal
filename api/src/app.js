@@ -9,9 +9,9 @@ import bodyParser from "body-parser";
  *
  */
 
-import mealRoutes from "./src/routes/meal.routes";
-import menuRoutes from "./src/routes/menu.routes";
-import ordersRoutes from "./src/routes/order.routes";
+import mealRoutes from "./routes/meal.routes";
+import menuRoutes from "./routes/menu.routes";
+import ordersRoutes from "./routes/order.routes";
 
 const hostname = "127.0.0.1";
 const port = 8000;
