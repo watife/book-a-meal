@@ -14,7 +14,7 @@ import menuRoutes from "./routes/menu.routes";
 import ordersRoutes from "./routes/order.routes";
 
 const hostname = "127.0.0.1";
-const port = 8000;
+const port = process.env.PORT || 8000;
 const app = express(); // setup express application
 const server = http.createServer(app);
 
