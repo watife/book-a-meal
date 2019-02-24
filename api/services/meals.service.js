@@ -33,17 +33,23 @@ const MealService = {
   getAMeal: id => {
     const foundMeal = dummyData.meals.find(meal => meal.id.toString() === id);
 
-    return foundMeal || {};
+    return foundMeal;
   },
   modifyMeal: (id, data) => {
     const { meals } = dummyData;
     const foundMeal = meals.find(meal => meal.id.toString() === id);
 
+    const newId = foundMeal.id;
+
+    const newName = data.name ? data.name : foundMeal.name;
+    const newSize = data.size ? data.size : foundMeal.size;
+    const newPrice = data.price ? data.price : foundMeal.price;
+
     const menuData = {
-      id: foundMeal.id,
-      name: data.name ? data.name : foundMeal.name,
-      size: data.size ? data.size : foundMeal.size,
-      price: data.price ? data.price : foundMeal.price
+      id: newId,
+      name: newName,
+      size: newSize,
+      price: newPrice
     };
 
     return menuData;

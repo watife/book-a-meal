@@ -23,8 +23,8 @@ describe("All API test for MEAL endpoints", () => {
         res.body.should.have.property("status");
         res.body.should.have.property("data");
         res.body.data[0].should.have.property("id");
-        res.body.data[0].name.should.equal("Fried Rice");
-        res.body.data[0].size.should.equal("Medium");
+        res.body.data[0].should.have.property("name");
+        res.body.data[0].should.have.property("size");
         done();
       });
   });

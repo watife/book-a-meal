@@ -35,7 +35,6 @@ const OrderService = {
 
     const { order } = dummyData;
 
-    console.log(id);
     const foundOrder = order.find(eachOrder => eachOrder.id.toString() === id);
 
     foundOrder.meals = data.meals;
@@ -54,18 +53,9 @@ const OrderService = {
 
     const newId = lastId + 1;
 
-    const checkedUserOrders = dummyData.order.find(
-      eachOrder => eachOrder.userId === orderData.userId
-    );
-
-    if (checkedUserOrders !== undefined) {
-      orderData.id = newId;
-      orderData.date = Date.now();
-
-      dummyData.order.push(orderData);
-
-      return orderData;
-    }
+    // const checkedUserOrders = dummyData.order.find(
+    //   eachOrder => eachOrder.userId === orderData.userId
+    // );
 
     orderData.id = newId;
     orderData.date = Date.now();

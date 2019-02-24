@@ -33,7 +33,7 @@ describe("All API test for MENU endpoints", () => {
         done();
       });
   });
-  it("should list a Add today's Menu on /meals/<id> GET", done => {
+  it("should list a Add today's Menu on /meals/ GET", done => {
     chai
       .request(app)
       .post(PREFIX)
