@@ -62,9 +62,9 @@ app.use("/api/v1/menu/", _menu.default);
  */
 
 app.use("/api/v1/orders/", _order.default);
-var PORT = process.env.PORT || 5000;
-app.listen(PORT, hostname, function () {
-  console.log("Server running at http://".concat(hostname, ":").concat(PORT));
+var port = process.env.PORT || 5000;
+app.listen(port, hostname, function () {
+  console.log("Server running at http://".concat(hostname, ":").concat(port));
 });
 var _default = app;
 exports.default = _default;

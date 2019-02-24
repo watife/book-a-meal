@@ -49,10 +49,10 @@ app.use("/api/v1/menu/", menuRoutes);
  */
 app.use("/api/v1/orders/", ordersRoutes);
 
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
-app.listen(PORT, hostname, () => {
-  console.log(`Server running at http://${hostname}:${PORT}`);
+app.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}`);
 });
 
 export default app;
