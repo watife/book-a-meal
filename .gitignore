@@ -1,1 +1,4 @@
-api/node_modules/axobject-query/lib/etc/objects/DescriptionListTermRole.js
+/node_modules
+npm-debug.log
+.DS_Store
+.api/env
