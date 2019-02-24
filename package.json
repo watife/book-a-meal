@@ -4,10 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node src/app.js",
+    "dev": "nodemon --exec babel-node api/src/app.js",
     "start": "npm run build && node build/app.js",
-    "build": "babel src -d build",
-    "test": "nyc --require @babel/register mocha test/*.js --exit",
+    "build": "babel api/src -d build",
+    "test": "nyc --require @babel/register mocha api/test/*.js --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "boluwatife fakorede",
