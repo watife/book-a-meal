@@ -14,9 +14,7 @@ import menuRoutes from "./routes/menu.routes";
 import ordersRoutes from "./routes/order.routes";
 
 const hostname = "127.0.0.1";
-const port = process.env.PORT || 8000;
 const app = express(); // setup express application
-const server = http.createServer(app);
 
 app.use(logger("dev")); // log requests to the console
 
@@ -51,8 +49,10 @@ app.use("/api/v1/menu/", menuRoutes);
  */
 app.use("/api/v1/orders/", ordersRoutes);
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, hostname, () => {
+  console.log(`Server running at http://${hostname}:${PORT}`);
 });
 
 export default app;

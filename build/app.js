@@ -27,10 +27,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  */
 var hostname = "127.0.0.1";
-var port = 8000;
 var app = (0, _express.default)(); // setup express application
-
-var server = _http.default.createServer(app);
 
 app.use((0, _morgan.default)("dev")); // log requests to the console
 // Parse incoming requests data
@@ -65,8 +62,9 @@ app.use("/api/v1/menu/", _menu.default);
  */
 
 app.use("/api/v1/orders/", _order.default);
-server.listen(port, hostname, function () {
-  console.log("Server running at http://".concat(hostname, ":").concat(port, "/"));
+var PORT = process.env.PORT || 5000;
+app.listen(PORT, hostname, function () {
+  console.log("Server running at http://".concat(hostname, ":").concat(PORT));
 });
 var _default = app;
 exports.default = _default;
