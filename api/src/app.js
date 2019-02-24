@@ -13,7 +13,6 @@ import mealRoutes from "./routes/meal.routes";
 import menuRoutes from "./routes/menu.routes";
 import ordersRoutes from "./routes/order.routes";
 
-const hostname = "127.0.0.1";
 const app = express(); // setup express application
 
 app.use(logger("dev")); // log requests to the console
@@ -52,7 +51,7 @@ app.use("/api/v1/orders/", ordersRoutes);
 const port = process.env.PORT || 5000;
 
 app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}`);
+  console.log(`Server running at ${port}`);
 });
 
 export default app;
