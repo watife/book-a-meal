@@ -62,7 +62,7 @@ app.use("/api/v1/menu/", _menu.default);
 
 app.use("/api/v1/orders/", _order.default);
 var port = process.env.PORT || 5000;
-app.listen(port, hostname, function () {
+app.listen(port, function () {
   console.log("Server running at ".concat(port));
 });
 var _default = app;
