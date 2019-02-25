@@ -1,0 +1,177 @@
+.checkout {
+  padding: 5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkout-main {
+  flex: 0 0 65%;
+  /* background-color: orange; */
+  margin-top: 3rem;
+  padding: 2rem;
+}
+
+.checkout-form {
+  flex: 1;
+  background-color: red;
+  margin: 0 2rem;
+}
+
+.page {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 4rem;
+}
+
+.img-round {
+  border-radius: 50%;
+}
+
+.checkout-item {
+  margin-left: 3rem;
+  margin-right: auto;
+}
+
+.checkout-item p {
+  color: #7a7a7a;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.checkout-item span {
+  font-size: 1.7rem;
+  margin-bottom: 3rem;
+  font-weight: 700;
+  color: #313131;
+}
+
+.btn-cart {
+  font-size: 1.5rem;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn-cart--increment {
+  margin-right: auto;
+}
+
+.cart-input {
+  width: 5rem;
+  height: 3rem;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  margin: 0 1.5rem;
+  padding-left: 2rem;
+  font-size: 1.5rem;
+}
+
+.order-price {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-right: 5rem;
+}
+
+.checkout-card {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ececec;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.continue-shopping {
+  display: flex;
+  font-size: 1.5rem;
+  align-items: center;
+}
+
+.continue-shopping span {
+  margin-right: 1.5rem;
+  font-size: 2rem;
+}
+
+.checkout-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+.subtotal {
+  display: flex;
+  align-items: center;
+}
+
+.subtotal p {
+  font-size: 2rem;
+  color: #d6d4d4;
+  margin-right: 1rem;
+}
+
+.price {
+  font-size: 2rem;
+}
+
+.checkout-form {
+  padding: 3rem;
+  border-radius: 5px;
+  background-color: #3b3b3b;
+}
+
+.card-header {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ecebeb;
+}
+
+.card-type {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  color: #7c7a7a;
+  font-size: 1.4rem;
+}
+
+.each-card {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cards {
+  width: 9rem;
+}
+
+.checkout-form__input {
+  margin-top: 2rem;
+}
+
+.checkout-form__input input {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  border: 0px;
+  border-bottom: 1px solid #adacac;
+  background-color: #3b3b3b;
+  color: #fff;
+  padding-bottom: 1rem;
+}
+
+.checkout-btn {
+  margin-top: 4rem;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 5px;
+  border: 0px;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #5c5cee;
+  cursor: pointer;
+}
