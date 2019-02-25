@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Checkout Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="./styles/admin.css"
+    />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/signin.css" />
+    <link rel="stylesheet" href="./styles/checkout.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div class="">
+      <div>
+        <div class="container">
+          <div class="checkout">
+            <div class="checkout-main">
+              <header class="page">
+                Order Cart
+              </header>
+              <main class="carts">
+                <div class="checkout-card">
+                  <div class="main-dish__item--description">
+                    <img
+                      src="./assets/images/spaghetti.jpg"
+                      alt=""
+                      class="dish-item--img img-round"
+                    />
+                    <div class="checkout-item">
+                      <span>Spagetti & Chicken</span>
+                      <p>
+                        id: #576
+                      </p>
+                    </div>
+
+                    <div class="checkout-item">
+                      <button class="btn-cart">
+                        -
+                      </button>
+                      <input type="text" class="cart-input" value="1" />
+                      <button class="btn-cart btn-cart--increment">
+                        +
+                      </button>
+                    </div>
+
+                    <div class="order-price">$10.20</div>
+                    <div class="cancel">&#x274C;</div>
+                  </div>
+                </div>
+                <hr />
+                <div class="checkout-card">
+                  <div class="main-dish__item--description">
+                    <img
+                      src="./assets/images/spaghetti.jpg"
+                      alt=""
+                      class="dish-item--img img-round"
+                    />
+                    <div class="checkout-item">
+                      <span>Spagetti & Chicken</span>
+                      <p>
+                        id: #576
+                      </p>
+                    </div>
+
+                    <div class="checkout-item">
+                      <button class="btn-cart">
+                        -
+                      </button>
+                      <input type="text" class="cart-input" value="1" />
+                      <button class="btn-cart btn-cart--increment">
+                        +
+                      </button>
+                    </div>
+
+                    <div class="order-price">$10.20</div>
+                    <div class="cancel">&#x274C;</div>
+                  </div>
+                </div>
+                <hr />
+              </main>
+              <div class="checkout-footer">
+                <div class="continue-shopping">
+                  <span>&larr;</span>
+                  <a href="admin.html">Continue Shopping</a>
+                </div>
+                <div class="subtotal">
+                  <p>Subtotal:</p>
+                  <div class="price">$24.90</div>
+                </div>
+              </div>
+            </div>
+            <div class="checkout-form">
+              <header class="card-header">
+                Card Details
+              </header>
+              <div class="card-type">
+                <p>Card Type</p>
+                <div class="each-card">
+                  <img
+                    src="./assets/svg/mc_vrt_rev.svg"
+                    alt="master card"
+                    class="cards"
+                  />
+                  <img
+                    src="./assets/svg/mc_vrt_rev.svg"
+                    alt="master card"
+                    class="cards"
+                  />
+                </div>
+                <div class="checkout-form__input">
+                  <label for="card-name">Name on Card</label>
+                  <input type="text" />
+                </div>
+                <div class="checkout-form__input">
+                  <label for="card-name">Card Number</label>
+                  <input type="text" />
+                </div>
+                <div class="checkout-form__input">
+                  <label for="card-name">Expiration date</label>
+                  <input type="text" />
+                </div>
+                <a href="confirm.html"
+                  ><button class="checkout-btn">
+                    Check Out
+                  </button></a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
