@@ -162,6 +162,8 @@ hr {
   background-color: #3b3b3b;
   color: #fff;
   padding-bottom: 1rem;
+  outline: none;
+  padding-left: 1rem;
 }
 
 .checkout-btn {
