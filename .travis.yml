@@ -1,13 +1,24 @@
 language: node_js
 node_js:
   - "stable"
+env:
+  global:
+    - CODECLIMATE_REPO_TOKEN=3525403235efcee6dc7541db0682ada1414158c600a8a126d222f394dd75e29a
 cache:
   directories:
     - "node_modules"
 before_install: cd api
 install:
   - npm install
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
   - npm run test
 after_success:
   - npm run coverage
+  - npm install codeclimate-test-reporter
+  - codeclimate-test-reporter < coverage/lcov.info
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
