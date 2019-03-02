@@ -3,6 +3,8 @@ import http from "http";
 import express from "express";
 import logger from "morgan";
 import bodyParser from "body-parser";
+import bcrypt from "bcrypt";
+import { config } from "dotenv";
 import sequelize from "./utils/database";
 
 // import models
@@ -15,7 +17,7 @@ import OrderMeal from "./models/orderMeal.model";
 import Category from "./models/category.model";
 
 // import seeds
-import seeds from "./seeds/seed";
+// import seeds from "./seeds/seed";
 
 /*
  *
@@ -30,6 +32,7 @@ import catererRoutes from "./routes/caterer.routes";
 import customerRoutes from "./routes/customer.routes";
 import categoryRoutes from "./routes/category.routes";
 
+config();
 const hostname = "127.0.0.1";
 const port = process.env.PORT || 8000;
 const app = express(); // setup express application
@@ -65,11 +68,35 @@ Caterer.hasMany(Category);
 Caterer.hasMany(Order);
 Caterer.hasMany(Menu);
 
+const Seeds = async () => {
+  try {
+    const hash = await bcrypt.hash(process.env.CATERER_PASSWORD, 10);
+    return Promise.all([
+      Caterer.create({
+        name: "boluwatife",
+        email: process.env.CATERER_EMAIL,
+        password: hash,
+        phone: "08089333186"
+      }),
+
+      Category.create({
+        name: "spagetti"
+      })
+    ]).then(([spagetti, boluwatife]) => {
+      // return Promise.all([spagetti.setCategories(boluwatife)]);
+      return spagetti.setCategories([boluwatife]);
+    });
+  } catch (error) {
+    return console.log(error);
+  }
+};
+
 sequelize
   .sync({ force: true })
   .then(() => {
     console.log("DB Connection has been established");
-    // caterer(Caterer);
+    Seeds();
+    console.log("Seeds added");
     server.listen(port, hostname, () => {
       console.log(`Server running at http://${hostname}:${port}/`);
     });
