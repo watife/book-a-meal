@@ -5,7 +5,7 @@ config();
 
 const sequelize = new Sequelize(
   process.env.DATABASE_URL,
-  process.env.USER,
+  process.env.DATABASE_USER,
   "",
   {
     dialect: "postgres",

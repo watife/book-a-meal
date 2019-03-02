@@ -4,13 +4,16 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --exec babel-node app.js",
-    "test": "nyc --require @babel/register mocha test/*.js --exit",
-    "coverage": "nyc npm test && nyc --require @babel/register report --reporter=text-lcov | coveralls"
+    "dev": "nodemon --exec babel-node api/src/app.js",
+    "start": "node build/app.js",
+    "build": "babel api/src -d build",
+    "test": "nyc --require @babel/register mocha api/test/*.js --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "boluwatife fakorede",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
