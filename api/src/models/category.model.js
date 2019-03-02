@@ -14,7 +14,7 @@ const Category = sequelize.define("category", {
   },
   catererId: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: true
   },
   createdAt: Sequelize.DATEONLY,
   updatedAt: Sequelize.DATEONLY
