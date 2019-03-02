@@ -16,9 +16,9 @@ const Meal = sequelize.define("meal", {
     type: Sequelize.INTEGER,
     allowNull: false
   },
-  quantity: {
-    type: Sequelize.INTEGER,
-    default: null
+  size: {
+    type: Sequelize.STRING,
+    allowNull: false
   },
   imageUrl: {
     type: Sequelize.STRING,

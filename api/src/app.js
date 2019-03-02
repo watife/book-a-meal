@@ -1,3 +1,4 @@
+import "@babel/polyfill";
 import http from "http";
 import express from "express";
 import logger from "morgan";
@@ -12,6 +13,9 @@ import Menu from "./models/menu.model";
 import Order from "./models/order.model";
 import OrderMeal from "./models/orderMeal.model";
 import Category from "./models/category.model";
+
+// import seeds
+import seeds from "./seeds/seed";
 
 /*
  *
@@ -56,13 +60,16 @@ Menu.belongsTo(Caterer, { constraints: true, onDelete: "CASCADE" });
 OrderMeal.belongsTo(Meal, { constraints: true, onDelete: "CASCADE" });
 Category.hasMany(Meal, { constraints: true, onDelete: "CASCADE" });
 Meal.belongsTo(Category);
+Category.belongsTo(Caterer);
+Caterer.hasMany(Category);
 Caterer.hasMany(Order);
 Caterer.hasMany(Menu);
 
 sequelize
-  .sync()
+  .sync({ force: true })
   .then(() => {
     console.log("DB Connection has been established");
+    // caterer(Caterer);
     server.listen(port, hostname, () => {
       console.log(`Server running at http://${hostname}:${port}/`);
     });

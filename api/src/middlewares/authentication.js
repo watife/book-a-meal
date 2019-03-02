@@ -60,7 +60,8 @@ class AuthController {
     const jwtToken = token.split(" ")[1];
     try {
       const decoded = await jwt.verify(jwtToken, secret);
-      if (!decoded.isCaterer || !decoded.isCustomer) {
+
+      if (!decoded.isCaterer && !decoded.isCustomer) {
         throw new Error("Unauthorized request");
       }
       if (decoded.caterer) {

@@ -8,8 +8,8 @@ class CatererValidate {
         price: Joi.number()
           .min(1)
           .required(),
-        quantity: Joi.string().required(),
-        imageUrl: Joi.string().required(),
+        size: Joi.string().required(),
+        imageObj: Joi.object().required(),
         categoryId: Joi.number().required()
       };
       await Joi.validate(req.body, schema);
@@ -29,8 +29,8 @@ class CatererValidate {
       const schema = {
         name: Joi.string(),
         price: Joi.number().min(1),
-        quantity: Joi.string(),
-        imageUrl: Joi.string(),
+        size: Joi.string(),
+        imageUrl: Joi.object(),
         categoryId: Joi.number()
       };
       await Joi.validate(req.body, schema);
