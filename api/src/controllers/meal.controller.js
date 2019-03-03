@@ -29,7 +29,6 @@ class MealController {
           id: meal.id,
           name: meal.name,
           price: meal.price,
-          size: meal.size,
           imageUrl: mealImg
         };
         return data;
@@ -54,13 +53,15 @@ class MealController {
    */
   static async addAMeal(req, res) {
     try {
-      const { name, price, size, imageUrl, categoryId } = req.body;
+      const { name, price, imageUrl, categoryId } = req.body;
 
       const category = await Category.findByPk(categoryId);
 
       if (!category) {
         throw new Error("the selected category not found");
       }
+
+      // check to make sure that the meal with that specific
 
       // save the image in the photos folder
 
@@ -91,7 +92,6 @@ class MealController {
       const meal = await Meal.create({
         name,
         price,
-        size,
         categoryId,
         imageUrl: fileName,
         catererId: req.caterer.id
@@ -104,7 +104,6 @@ class MealController {
           id: meal.id,
           name: meal.name,
           price: meal.price,
-          size: meal.size,
           imageUrl: meal.imageUrl
         }
       });
@@ -126,7 +125,7 @@ class MealController {
     try {
       const { id } = req.params;
 
-      const meal = await Meal.findById(id);
+      const meal = await Meal.findByPk(id);
 
       if (!meal) {
         throw new Error("Meal specified not found");
@@ -140,7 +139,6 @@ class MealController {
         id: meal.id,
         name: meal.name,
         price: meal.price,
-        size: meal.size,
         imageUrl: mealImg
       };
       return res.status(200).json({
@@ -165,9 +163,9 @@ class MealController {
   static async modifyMeal(req, res) {
     try {
       const { id } = req.params;
-      const { body } = req.body;
+      const body = { ...req.body };
 
-      const meal = await Meal.findById(id);
+      const meal = await Meal.findByPk(id);
 
       if (!meal) {
         throw new Error("the specified meal not found");
@@ -176,12 +174,13 @@ class MealController {
       const mealUpdateData = {
         name: body.name ? body.name : meal.name,
         price: body.price ? body.price : meal.price,
-        quantity: body.quantity ? body.quantity : meal.quantity,
         categoryId: body.categoryId ? body.categoryId : meal.categoryId,
-        imageUrl: body.imageUrl ? body.imageUrl : meal.imageUrl
+        imageUrl: body.imageUrl ? body.imageUrl.name : meal.imageUrl
       };
 
-      const { name, price, quantity, imageUrl } = mealUpdateData;
+      const { name, price, imageUrl } = mealUpdateData;
+
+      console.log(meal.imageUrl.name);
 
       // change the image url data to contain the new data
       if (body.imageUrl) {
@@ -190,7 +189,7 @@ class MealController {
         // read the file to be deleted
         // 1. get the default path to the public directory
         const fileDir = path.join(__dirname, `../public/photos/`);
-        fs.unlink(fileDir + body.imageUrl.name, err => {
+        fs.unlink(fileDir + meal.imageUrl, err => {
           if (err) {
             throw new Error("image couldn't be updated");
           }
@@ -207,7 +206,10 @@ class MealController {
           }
 
           // strip off the data: url prefix to get just the base64-encoded bytes
-          const data = imageUrl.data.replace(/^data:image\/\w+;base64,/, "");
+          const data = body.imageUrl.data.replace(
+            /^data:image\/\w+;base64,/,
+            ""
+          );
 
           const buf = Buffer.from(data, "base64");
 
@@ -219,7 +221,7 @@ class MealController {
         });
       }
 
-      await Meal.update({ name, price, quantity, imageUrl }, { where: { id } });
+      await Meal.update({ name, price, imageUrl }, { where: { id } });
 
       return res.status(200).json({
         status: "success",
@@ -243,7 +245,9 @@ class MealController {
     try {
       const { id } = req.params;
 
-      const foundMeal = await Meal.findByPk({ where: { id } });
+      console.log(id);
+
+      const foundMeal = await Meal.findByPk(id);
 
       if (!foundMeal) {
         throw new Error("could not find the specified meal");
@@ -252,9 +256,9 @@ class MealController {
       // unlink the image from the photo directory
       // 1. get the default path to the public directory
       const fileDir = path.join(__dirname, `../public/photos/`);
-      fs.unlink(fileDir + foundMeal.imageUrl.name, err => {
+      fs.unlink(fileDir + foundMeal.imageUrl, err => {
         if (err) {
-          throw new Error("image couldn't be updated");
+          throw new Error("Could not delete the specified Meal");
         }
       });
 
@@ -269,7 +273,7 @@ class MealController {
         meal: "meal deleted successfully"
       });
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         status: "error",
         message: error.message
       });

@@ -8,8 +8,8 @@ const Menu = sequelize.define("menu", {
     allowNull: false,
     primaryKey: true
   },
-  mealId: {
-    type: Sequelize.INTEGER,
+  meals: {
+    type: Sequelize.JSON,
     allowNull: false
   },
   quantity: {
