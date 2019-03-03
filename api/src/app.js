@@ -15,6 +15,7 @@ import Menu from "./models/menu.model";
 import Order from "./models/order.model";
 import OrderMeal from "./models/orderMeal.model";
 import Category from "./models/category.model";
+import MenuMeal from "./models/menumeal.model";
 
 // import seeds
 // import seeds from "./seeds/seed";
@@ -67,6 +68,8 @@ Category.belongsTo(Caterer);
 Caterer.hasMany(Category);
 Caterer.hasMany(Order);
 Caterer.hasMany(Menu);
+Meal.belongsToMany(Menu, { through: "menu_meals" });
+Menu.belongsToMany(Meal, { through: "menu_meals" });
 
 const Seeds = async () => {
   // const caterer = Caterer.findOne({ where: { name: "boluwatife" } });

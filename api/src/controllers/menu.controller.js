@@ -1,7 +1,9 @@
+import path from "path";
+import fs from "fs";
+
 import Menu from "../models/menu.model";
-
 import Meal from "../models/meal.model";
-
+import MenuMeal from "../models/menumeal.model";
 import dateActive from "../utils/date";
 
 class MenuContoller {
@@ -33,12 +35,16 @@ class MenuContoller {
   /*
    *
    * controller to add menu for Today
-   * required: name, price, quantity, imageUrl
+   *
    *
    */
   static async addTodayMenu(req, res) {
     try {
-      const { name, quantity, mealId } = req.body;
+      const { mealId } = req.body;
+
+      if (!mealId) {
+        throw new Error("select a meal to create today's menu");
+      }
 
       const meal = await Meal.findById(mealId);
 
@@ -51,19 +57,32 @@ class MenuContoller {
       const activeMenu = await Menu.findOne({ where: { createdAt: today } });
 
       if (activeMenu) {
-        throw new Error("There is a menu specified for today");
+        await MenuMeal.create({
+          menuId: activeMenu.dataValues.id,
+          mealId: meal.dataValues.id
+        });
+
+        return res.status(201).json({
+          status: "success",
+          message: "Meal Added to Menu successfully",
+          menu: activeMenu
+        });
       }
 
       const menu = await Menu.create({
-        name,
-        quantity,
-        mealId,
         catererId: req.caterer.id
       });
 
+      if (meal) {
+        await MenuMeal.create({
+          menuId: menu.dataValues.id,
+          mealId: meal.dataValues.id
+        });
+      }
+
       return res.status(201).json({
         status: "success",
-        message: "Meal Added successfully",
+        message: "Menu Added successfully",
         menu
       });
     } catch (error) {
@@ -84,16 +103,53 @@ class MenuContoller {
     try {
       const today = dateActive();
 
-      const menu = await Menu.findOne({ where: { createdAt: today } });
+      const menu = await Menu.find({
+        include: [
+          {
+            model: Meal,
+            as: "meals",
+            required: false,
+            attributes: ["id", "name", "price", "imageUrl"],
+            through: { attributes: [] }
+          }
+        ],
+        where: { createdAt: today }
+      });
 
       if (!menu) {
         throw new Error("No current active Menu, try again Later");
       }
+
+      // 1. get the default path to the public directory
+      const fileDir = path.join(__dirname, "../public/photos/");
+
+      const mealData = menu.meals.map(meal => {
+        const buff = fs.readFileSync(fileDir + meal.imageUrl);
+        const mealImg = buff.toString("base64");
+
+        const data = {
+          id: meal.id,
+          name: meal.name,
+          price: meal.price,
+          imageUrl: mealImg
+        };
+        return data;
+      });
+
+      const menuData = {
+        id: menu.id,
+        catererId: menu.catererId,
+        createdAt: menu.createdAt,
+        meals: mealData
+      };
+
+      console.log(menuData.meals.length);
+
       return res.status(200).json({
         status: "success",
         message: "Menu retrieved successfully",
         data: {
-          menu
+          menu: menuData
         }
       });
     } catch (error) {

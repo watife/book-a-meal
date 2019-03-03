@@ -48,7 +48,7 @@ class MealController {
   /*
    *
    * controller to add a single Meal
-   * required: name, price, size, imageUrl
+   * required: name, price, imageUrl
    *
    */
   static async addAMeal(req, res) {
@@ -61,7 +61,21 @@ class MealController {
         throw new Error("the selected category not found");
       }
 
-      // check to make sure that the meal with that specific
+      // check to make sure that the meal with that specific name doesn't exist
+      const mealCheck = await Meal.findOne({ where: { name } });
+
+      if (mealCheck) {
+        throw new Error("the meal already exists");
+      }
+
+      //  * make the image unique to the meal, no two meal should use thesame image
+      const imageCheck = await Meal.findOne({
+        where: { imageUrl: imageUrl.name }
+      });
+
+      if (imageCheck) {
+        throw new Error("Image have to be unique to each meal");
+      }
 
       // save the image in the photos folder
 
@@ -85,7 +99,7 @@ class MealController {
 
       fs.writeFile(fileDir + fileName, buf, err => {
         if (err) {
-          throw new Error("could not save meal image");
+          throw new Error(err);
         }
       });
 
