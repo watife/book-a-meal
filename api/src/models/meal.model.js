@@ -16,21 +16,17 @@ const Meal = sequelize.define("meal", {
     type: Sequelize.INTEGER,
     allowNull: false
   },
-  size: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
   imageUrl: {
     type: Sequelize.STRING,
     allowNull: false
   },
   categoryId: {
-    type: Sequelize.INTEGER
-    // allowNull: false
+    type: Sequelize.INTEGER,
+    allowNull: false
   },
   catererId: {
-    type: Sequelize.INTEGER
-    // allowNull: false
+    type: Sequelize.INTEGER,
+    allowNull: false
   },
   createdAt: Sequelize.DATEONLY,
   updatedAt: Sequelize.DATEONLY

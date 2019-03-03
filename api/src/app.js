@@ -69,6 +69,9 @@ Caterer.hasMany(Order);
 Caterer.hasMany(Menu);
 
 const Seeds = async () => {
+  // const caterer = Caterer.findOne({ where: { name: "boluwatife" } });
+
+  // if (!caterer) {
   try {
     const hash = await bcrypt.hash(process.env.CATERER_PASSWORD, 10);
     return Promise.all([
@@ -89,14 +92,21 @@ const Seeds = async () => {
   } catch (error) {
     return console.log(error);
   }
+  // }
+  // return true;
 };
 
 sequelize
-  .sync({ force: true })
+  .sync()
   .then(() => {
     console.log("DB Connection has been established");
-    Seeds();
-    console.log("Seeds added");
+    Caterer.findOne({ where: { name: "boluwatife" } }).then(caterer => {
+      if (!caterer) {
+        Seeds();
+        console.log("Seeds added");
+      }
+    });
+
     server.listen(port, hostname, () => {
       console.log(`Server running at http://${hostname}:${port}/`);
     });

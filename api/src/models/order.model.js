@@ -21,8 +21,8 @@ const Order = sequelize.define("order", {
     allowNull: false
   },
   delivery_status: {
-    type: Sequelize.INTEGER,
-    default: 0
+    type: Sequelize.STRING,
+    default: "pending"
   },
   catererId: {
     type: Sequelize.INTEGER,
