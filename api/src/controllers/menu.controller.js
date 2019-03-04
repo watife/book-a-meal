@@ -65,7 +65,8 @@ class MenuContoller {
         return res.status(201).json({
           status: "success",
           message: "Meal Added to Menu successfully",
-          menu: activeMenu
+          menu: activeMenu,
+          meal
         });
       }
 
@@ -142,8 +143,6 @@ class MenuContoller {
         createdAt: menu.createdAt,
         meals: mealData
       };
-
-      console.log(menuData.meals.length);
 
       return res.status(200).json({
         status: "success",

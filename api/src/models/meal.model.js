@@ -21,12 +21,12 @@ const Meal = sequelize.define("meal", {
     allowNull: false
   },
   categoryId: {
-    type: Sequelize.INTEGER
-    // allowNull: false
+    type: Sequelize.INTEGER,
+    allowNull: false
   },
   catererId: {
-    type: Sequelize.INTEGER
-    // allowNull: false
+    type: Sequelize.INTEGER,
+    allowNull: false
   },
   createdAt: Sequelize.DATEONLY,
   updatedAt: Sequelize.DATEONLY

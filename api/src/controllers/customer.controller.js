@@ -49,9 +49,9 @@ class CustomerController {
       );
       return res.status(201).json({
         status: "success",
-        message: "Caterer Registered",
+        message: "Customer Registered",
         token: `Bearer ${jwtToken}`,
-        caterer: customerToSave
+        customer: customerToSave
       });
     } catch (error) {
       return res.status(400).json({

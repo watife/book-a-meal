@@ -1,7 +1,7 @@
 import Sequelize from "sequelize";
 import sequelize from "../utils/database";
 
-const OrderMeal = sequelize.define("orderMeal", {
+const OrderMeal = sequelize.define("order_meals", {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -12,11 +12,12 @@ const OrderMeal = sequelize.define("orderMeal", {
     type: Sequelize.INTEGER,
     allowNull: false
   },
-  quantity: {
+  orderId: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
-  userId: {
+  customerId: {
     type: Sequelize.INTEGER,
     allowNull: false
   },

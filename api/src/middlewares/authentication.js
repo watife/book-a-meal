@@ -13,7 +13,7 @@ class AuthController {
     const jwtToken = token.split(" ")[1];
     try {
       const decoded = await jwt.verify(jwtToken, secret);
-      req.user = decoded.user;
+      req.customer = decoded.customer;
       next();
       return true;
     } catch (err) {

@@ -3,9 +3,7 @@ import { Router } from "express";
 // controllers
 import MenuController from "../controllers/menu.controller";
 import AuthController from "../middlewares/authentication";
-
-console.log(MenuController);
-console.log(AuthController);
+import MenuValidate from "../middlewares/menu.middleware";
 
 const router = Router();
 
@@ -15,7 +13,12 @@ router.get(
   AuthController.verifyAdminToken,
   MenuController.fetchAllMenu
 );
-router.post("/", AuthController.verifyAdminToken, MenuController.addTodayMenu);
+router.post(
+  "/",
+  AuthController.verifyAdminToken,
+  MenuValidate.validateMenu,
+  MenuController.addTodayMenu
+);
 // router.put("/", AuthController.verifyAdminToken, MenuController.modifyMenu);
 
 export default router;
