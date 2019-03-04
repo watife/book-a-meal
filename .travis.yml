@@ -1,26 +1,13 @@
 language: node_js
-jobs:
-  include:
-    - stage: test
-      node_js:
-        - stable
-      env: DIALECT=postgres SEQUELIZE=latest SEQ_PORT=54320
-before_install: cd api
-install: -sudo npm install -g sequelize-cli
-  - npm install
+node_js:
+  - "stable"
 cache:
   directories:
-    - node_modules
-services:
-  - postgresql
-# env:
-#   - NODE_ENV=development
-before_script:
-  - psql -c 'create database book_my_meal;' -U postgres
-  - psql -c "CREATE USER watife WITH PASSWORD '@danielNejo';" -U postgres
-#   - sequelize db:seed:all
+    - "node_modules"
+before_install: cd api
+install:
+  - npm install
 script:
-  - npm test
-# Send coverage data to Coveralls
-# after_script: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
-# after_success: npm run coverage
+  - npm run test
+after_success:
+  - npm run coverage

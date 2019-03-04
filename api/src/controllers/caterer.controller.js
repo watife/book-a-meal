@@ -112,122 +112,122 @@ class CatererController {
    * required: caterer id
    *
    */
-  static async getCaterer(req, res) {
-    try {
-      const { id } = req.params;
+  // static async getCaterer(req, res) {
+  //   try {
+  //     const { id } = req.params;
 
-      const caterer = await Caterer.findById(id);
+  //     const caterer = await Caterer.findById(id);
 
-      if (!caterer) {
-        throw new Error("Caterer specified does not exist");
-      }
+  //     if (!caterer) {
+  //       throw new Error("Caterer specified does not exist");
+  //     }
 
-      const safeCaterer = {
-        id: caterer.id,
-        name: caterer.name,
-        email: caterer.email,
-        phone: caterer.phone
-      };
+  //     const safeCaterer = {
+  //       id: caterer.id,
+  //       name: caterer.name,
+  //       email: caterer.email,
+  //       phone: caterer.phone
+  //     };
 
-      return res.status(200).json({
-        status: "success",
-        caterer: safeCaterer
-      });
-    } catch (error) {
-      return res.status(400).json({
-        status: "error",
-        message: error.message
-      });
-    }
-  }
+  //     return res.status(200).json({
+  //       status: "success",
+  //       caterer: safeCaterer
+  //     });
+  //   } catch (error) {
+  //     return res.status(400).json({
+  //       status: "error",
+  //       message: error.message
+  //     });
+  //   }
+  // }
 
-  /*
-   *
-   * controller to get all caterers
-   * required: none
-   *
-   */
-  static async getAllCaterer(req, res) {
-    try {
-      const caterers = await Caterer.findAll();
+  // /*
+  //  *
+  //  * controller to get all caterers
+  //  * required: none
+  //  *
+  //  */
+  // static async getAllCaterer(req, res) {
+  //   try {
+  //     const caterers = await Caterer.findAll();
 
-      if (!caterers[0]) {
-        throw new Error("No caterer was found");
-      }
-      // create new admin and remove the password fields
-      const newAdmins = caterers.map(admin => {
-        return {
-          id: admin.id,
-          name: admin.name,
-          email: admin.email,
-          phone: admin.phone
-        };
-      });
-      return res.status(200).json({
-        status: "success",
-        caterers: newAdmins
-      });
-    } catch (error) {
-      return res.status(400).json({
-        status: "error",
-        message: error.message
-      });
-    }
-  }
+  //     if (!caterers[0]) {
+  //       throw new Error("No caterer was found");
+  //     }
+  //     // create new admin and remove the password fields
+  //     const newAdmins = caterers.map(admin => {
+  //       return {
+  //         id: admin.id,
+  //         name: admin.name,
+  //         email: admin.email,
+  //         phone: admin.phone
+  //       };
+  //     });
+  //     return res.status(200).json({
+  //       status: "success",
+  //       caterers: newAdmins
+  //     });
+  //   } catch (error) {
+  //     return res.status(400).json({
+  //       status: "error",
+  //       message: error.message
+  //     });
+  //   }
+  // }
 
-  /*
-   *
-   * controller to modify a specific caterer
-   * required: admin id, new name
-   *
-   */
-  static async modifyCaterer(req, res) {
-    try {
-      const { id } = req.params;
-      const { name } = req.body;
-      const caterer = await Caterer.update({ name }, { where: { id } });
+  // /*
+  //  *
+  //  * controller to modify a specific caterer
+  //  * required: admin id, new name
+  //  *
+  //  */
+  // static async modifyCaterer(req, res) {
+  //   try {
+  //     const { id } = req.params;
+  //     const { name } = req.body;
+  //     const caterer = await Caterer.update({ name }, { where: { id } });
 
-      if (!caterer[0]) {
-        throw new Error(`Caterer specified could not be updated`);
-      }
-      return res.status(200).json({
-        status: "success",
-        caterer: "caterer successfully modified"
-      });
-    } catch (error) {
-      return res.status(400).json({
-        status: "error",
-        message: error.message
-      });
-    }
-  }
+  //     if (!caterer[0]) {
+  //       throw new Error(`Caterer specified could not be updated`);
+  //     }
+  //     return res.status(200).json({
+  //       status: "success",
+  //       caterer: "caterer successfully modified"
+  //     });
+  //   } catch (error) {
+  //     return res.status(400).json({
+  //       status: "error",
+  //       message: error.message
+  //     });
+  //   }
+  // }
 
-  /*
-   *
-   * controller to delete a specific caterer
-   * required: admin id
-   *
-   */
-  static async deleteCaterer(req, res) {
-    try {
-      const { id } = req.params;
+  // /*
+  //  *
+  //  * controller to delete a specific caterer
+  //  * required: admin id
+  //  *
+  //  */
+  // static async deleteCaterer(req, res) {
+  //   try {
+  //     const { id } = req.params;
 
-      const caterer = await Caterer.destroy({ where: { id } });
+  //     const caterer = await Caterer.destroy({ where: { id } });
 
-      if (!caterer) {
-        throw new Error("could not delete the specified caterer");
-      }
-      return res.status(200).json({
-        status: "success",
-        caterer: "Caterer successfully deleted"
-      });
-    } catch (error) {
-      return res.status(400).json({
-        status: "error",
-        message: error.message
-      });
-    }
-  }
+  //     if (!caterer) {
+  //       throw new Error("could not delete the specified caterer");
+  //     }
+  //     return res.status(200).json({
+  //       status: "success",
+  //       caterer: "Caterer successfully deleted"
+  //     });
+  //   } catch (error) {
+  //     return res.status(400).json({
+  //       status: "error",
+  //       message: error.message
+  //     });
+  //   }
+  // }
 }
 
 export default CatererController;
