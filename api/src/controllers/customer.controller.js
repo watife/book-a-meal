@@ -100,7 +100,7 @@ class CustomerController {
         status: "success",
         message: "Caterer Logged In",
         token: `Bearer ${jwtToken}`,
-        caterer: customerToSave
+        customer: customerToSave
       });
     } catch (error) {
       return res.status(400).json({
