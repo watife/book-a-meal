@@ -97,12 +97,12 @@ sequelize
   .sync()
   .then(() => {
     console.log("DB Connection has been established");
-    Caterer.findOne({ where: { id: 1 } }).then(caterer => {
-      if (!caterer) {
-        Seeds();
-        console.log("Seeds added");
-      }
-    });
+    // Caterer.findOne({ where: { id: 1 } }).then(caterer => {
+    //   if (!caterer) {
+    //     Seeds();
+    //     console.log("Seeds added");
+    //   }
+    // });
 
     server.listen(port, () => {
       console.log(`Server running at PORT: ${port}`);
