@@ -24,7 +24,7 @@ var Category = _database.default.define("category", {
   },
   catererId: {
     type: _sequelize.default.INTEGER,
-    allowNull: false
+    allowNull: true
   },
   createdAt: _sequelize.default.DATEONLY,
   updatedAt: _sequelize.default.DATEONLY

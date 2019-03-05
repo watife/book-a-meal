@@ -19,17 +19,17 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var CatererValidate =
+var OrderValidate =
 /*#__PURE__*/
 function () {
-  function CatererValidate() {
-    _classCallCheck(this, CatererValidate);
+  function OrderValidate() {
+    _classCallCheck(this, OrderValidate);
   }
 
-  _createClass(CatererValidate, null, [{
-    key: "validateMeal",
+  _createClass(OrderValidate, null, [{
+    key: "validateOrder",
     value: function () {
-      var _validateMeal = _asyncToGenerator(
+      var _validateOrder = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee(req, res, next) {
         var schema;
@@ -39,11 +39,9 @@ function () {
               case 0:
                 _context.prev = 0;
                 schema = {
-                  name: _joi.default.string().required(),
-                  price: _joi.default.number().min(1).required(),
-                  size: _joi.default.string().required(),
-                  imageObj: _joi.default.object().required(),
-                  categoryId: _joi.default.number().required()
+                  quantity: _joi.default.number().required(),
+                  billingAddress: _joi.default.string().required(),
+                  mealId: _joi.default.number().required()
                 };
                 _context.next = 4;
                 return _joi.default.validate(req.body, schema);
@@ -69,16 +67,16 @@ function () {
         }, _callee, this, [[0, 8]]);
       }));
 
-      function validateMeal(_x, _x2, _x3) {
-        return _validateMeal.apply(this, arguments);
+      function validateOrder(_x, _x2, _x3) {
+        return _validateOrder.apply(this, arguments);
       }
 
-      return validateMeal;
+      return validateOrder;
     }()
   }, {
-    key: "validateMealUpdate",
+    key: "validateOrderUpdate",
     value: function () {
-      var _validateMealUpdate = _asyncToGenerator(
+      var _validateOrderUpdate = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee2(req, res, next) {
         var schema;
@@ -88,11 +86,10 @@ function () {
               case 0:
                 _context2.prev = 0;
                 schema = {
-                  name: _joi.default.string(),
-                  price: _joi.default.number().min(1),
-                  size: _joi.default.string(),
-                  imageUrl: _joi.default.object(),
-                  categoryId: _joi.default.number()
+                  quantity: _joi.default.number(),
+                  billingAddress: _joi.default.string(),
+                  deliveryStatus: _joi.default.string(),
+                  mealId: _joi.default.number()
                 };
                 _context2.next = 4;
                 return _joi.default.validate(req.body, schema);
@@ -118,16 +115,16 @@ function () {
         }, _callee2, this, [[0, 8]]);
       }));
 
-      function validateMealUpdate(_x4, _x5, _x6) {
-        return _validateMealUpdate.apply(this, arguments);
+      function validateOrderUpdate(_x4, _x5, _x6) {
+        return _validateOrderUpdate.apply(this, arguments);
       }
 
-      return validateMealUpdate;
+      return validateOrderUpdate;
     }()
   }]);
 
-  return CatererValidate;
+  return OrderValidate;
 }();
 
-var _default = CatererValidate;
+var _default = OrderValidate;
 exports.default = _default;

@@ -65,7 +65,7 @@ function () {
               case 6:
                 return _context.abrupt("return", res.status(200).json({
                   status: "success",
-                  Category: categories
+                  data: categories
                 }));
 
               case 9:
@@ -184,7 +184,7 @@ function () {
 
               case 7:
                 _context3.next = 9;
-                return _caterer.default.findById(category.catererId);
+                return _caterer.default.findByPk(category.catererId);
 
               case 9:
                 caterer = _context3.sent;
@@ -243,9 +243,9 @@ function () {
               case 0:
                 _context4.prev = 0;
                 id = req.params.id;
-                body = req.body.body;
+                body = req.body;
                 _context4.next = 5;
-                return _category.default.findById(id);
+                return _category.default.findByPk(id);
 
               case 5:
                 category = _context4.sent;
@@ -263,7 +263,7 @@ function () {
                 };
                 name = mealUpdateData.name;
                 _context4.next = 12;
-                return _meal.default.update({
+                return _category.default.update({
                   name: name
                 }, {
                   where: {
@@ -339,7 +339,7 @@ function () {
               case 7:
                 return _context5.abrupt("return", res.status(200).json({
                   status: "success",
-                  meal: "meal deleted successfully"
+                  meal: "category deleted successfully"
                 }));
 
               case 10:

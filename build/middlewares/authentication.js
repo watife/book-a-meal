@@ -59,7 +59,7 @@ function () {
 
               case 7:
                 decoded = _context.sent;
-                req.user = decoded.user;
+                req.customer = decoded.customer;
                 next();
                 return _context.abrupt("return", true);
 
@@ -183,7 +183,7 @@ function () {
               case 7:
                 decoded = _context3.sent;
 
-                if (!(!decoded.isCaterer || !decoded.isCustomer)) {
+                if (!(!decoded.isCaterer && !decoded.isCustomer)) {
                   _context3.next = 10;
                   break;
                 }

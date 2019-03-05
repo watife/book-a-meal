@@ -11,14 +11,14 @@ var _database = _interopRequireDefault(require("../utils/database"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Order = _database.default.define("order", {
+var OrderMeal = _database.default.define("orders", {
   id: {
     type: _sequelize.default.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true
   },
-  orderId: {
+  quantity: {
     type: _sequelize.default.INTEGER,
     allowNull: false
   },
@@ -26,25 +26,17 @@ var Order = _database.default.define("order", {
     type: _sequelize.default.INTEGER,
     allowNull: false
   },
-  billing_address: {
+  deliveryStatus: {
+    type: _sequelize.default.STRING,
+    defaultValue: "pending"
+  },
+  billingAddress: {
     type: _sequelize.default.TEXT,
-    allowNull: false
-  },
-  delivery_status: {
-    type: _sequelize.default.INTEGER,
-    default: 0
-  },
-  catererId: {
-    type: _sequelize.default.INTEGER,
-    allowNull: false
-  },
-  userId: {
-    type: _sequelize.default.INTEGER,
     allowNull: false
   },
   createdAt: _sequelize.default.DATEONLY,
   updatedAt: _sequelize.default.DATEONLY
 });
 
-var _default = Order;
+var _default = OrderMeal;
 exports.default = _default;
