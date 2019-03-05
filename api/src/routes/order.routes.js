@@ -27,5 +27,11 @@ router.put(
   OrderContoller.modifyOrder
 );
 
+router.put(
+  "/status/:id",
+  AuthController.verifyAdminToken,
+  OrderContoller.updateStatus
+);
+
 // AuthController.verifyAdminToken
 export default router;

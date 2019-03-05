@@ -9,8 +9,6 @@ import Category from "../src/models/category.model";
 
 import Meal from "../src/models/meal.model";
 
-import { imageObj } from "../src/utils/testImg";
-
 chai.use(chaiHttp);
 
 const PREFIX = "/api/v1/menu";

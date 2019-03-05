@@ -66,6 +66,8 @@ class OrderController {
         customerId: req.customer.id
       });
 
+      console.log(`this is cust id ${req.customer.id}`);
+
       await OrderMeal.create({
         mealId,
         orderId: order.id,
@@ -95,7 +97,7 @@ class OrderController {
       const { id } = req.params;
 
       const order = await Order.findOne({
-        where: { id, customerId: req.customer.id }
+        where: { id }
       });
 
       if (!order) {
