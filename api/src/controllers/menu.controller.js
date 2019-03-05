@@ -147,9 +147,7 @@ class MenuContoller {
       return res.status(200).json({
         status: "success",
         message: "Menu retrieved successfully",
-        data: {
-          menu: menuData
-        }
+        menu: menuData
       });
     } catch (error) {
       return res.status(400).json({

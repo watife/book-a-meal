@@ -22,20 +22,6 @@ const defaultCaterer = {
   password: "default"
 };
 
-const defaultCustomer = {
-  name: "default",
-  email: "default@test.com",
-  phone: 2348089333186,
-  password: "default"
-};
-
-const defaultCustomer2 = {
-  name: "default2",
-  email: "default2@test.com",
-  phone: 2348089333187,
-  password: "default"
-};
-
 before(done => {
   Caterer.create(defaultCaterer).then(caterer => {
     Category.create({ name: "default", catererId: caterer.id }).then(() => {
@@ -270,7 +256,7 @@ describe("Meals", () => {
 
 after(done => {
   Caterer.destroy({ where: { email: "default@test.com" } }).then(() => {
-    Category.destroy({ where: { name: "default" } }).then(() => {
+    Category.destroy({ where: { name: "default2" } }).then(() => {
       Meal.destroy({ where: { name: "defaultMeal" } });
       done();
     });
