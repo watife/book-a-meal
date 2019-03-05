@@ -1,5 +1,4 @@
 language: node_js
-
 node_js:
   - "stable"
 cache:
@@ -15,9 +14,10 @@ env:
     - JWT_SECRET=kfngrjodsfmmsdodsosnrindsamawjfejfooeofnnwbqbd
     - CATERER_PASSWORD=password
     - CATERER_EMAIL=test@test.com
-    - DATABASE_URL = "testdb"
+    - DATABASE_URL = "book_a_meal_test"
     - DATABASE_USER = "user1"
 before_script:
-  - psql -c 'CREATE DATABASE testdb;' -U postgres
+  - psql -c 'CREATE DATABASE book_a_meal_test;' -U postgres
+script: npm test
 after_success:
   - npm run coverage
