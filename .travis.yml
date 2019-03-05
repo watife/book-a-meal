@@ -1,7 +1,5 @@
 language: node_js
-env:
-  global:
-    - JWT_SECRET=kfngrjodsfmmsdodsosnrindsamawjfejfooeofnnwbqbd;
+
 node_js:
   - "stable"
 cache:
@@ -10,8 +8,13 @@ cache:
 before_install: cd api
 install:
   - npm install
+services:
+  - postgresql
+env:
+  global:
+    - JWT_SECRET=kfngrjodsfmmsdodsosnrindsamawjfejfooeofnnwbqbd
 before_script:
-  - psql -c 'CREATE DATABASE book_a_meal;' -U user1
+  - psql -c 'CREATE DATABASE book_a_meal;' -U postgres
   - npm install -g nyc
 script:
   - npm run test
