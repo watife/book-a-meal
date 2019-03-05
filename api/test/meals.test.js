@@ -63,7 +63,6 @@ describe("Meals", () => {
               imageUrl
             })
             .end((err, res) => {
-              console.log(res.body);
               if (err) {
                 err.should.be.a("object");
               }
