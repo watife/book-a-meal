@@ -18,9 +18,7 @@ env:
     - DATABASE_URL = "testdb"
     - DATABASE_USER = "user1"
 before_script:
+  - psql -c "DROP DATABASE testdb;" -U postgres
   - psql -c 'CREATE DATABASE testdb;' -U postgres
-  - npm install -g nyc
-script:
-  - npm run test
 after_success:
   - npm run coverage
