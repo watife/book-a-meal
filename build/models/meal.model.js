@@ -26,10 +26,6 @@ var Meal = _database.default.define("meal", {
     type: _sequelize.default.INTEGER,
     allowNull: false
   },
-  quantity: {
-    type: _sequelize.default.INTEGER,
-    default: null
-  },
   imageUrl: {
     type: _sequelize.default.STRING,
     allowNull: false

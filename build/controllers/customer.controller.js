@@ -110,9 +110,9 @@ function () {
                 });
                 return _context.abrupt("return", res.status(201).json({
                   status: "success",
-                  message: "Caterer Registered",
+                  message: "Customer Registered",
                   token: "Bearer ".concat(jwtToken),
-                  caterer: customerToSave
+                  customer: customerToSave
                 }));
 
               case 20:
@@ -206,7 +206,7 @@ function () {
                   status: "success",
                   message: "Caterer Logged In",
                   token: "Bearer ".concat(jwtToken),
-                  caterer: customerToSave
+                  customer: customerToSave
                 }));
 
               case 17:

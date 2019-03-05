@@ -18,14 +18,6 @@ var Menu = _database.default.define("menu", {
     allowNull: false,
     primaryKey: true
   },
-  mealId: {
-    type: _sequelize.default.INTEGER,
-    allowNull: false
-  },
-  quantity: {
-    type: _sequelize.default.INTEGER,
-    allowNull: false
-  },
   catererId: {
     type: _sequelize.default.INTEGER,
     allowNull: false

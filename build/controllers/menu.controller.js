@@ -5,9 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _path = _interopRequireDefault(require("path"));
+
+var _fs = _interopRequireDefault(require("fs"));
+
 var _menu = _interopRequireDefault(require("../models/menu.model"));
 
 var _meal = _interopRequireDefault(require("../models/meal.model"));
+
+var _menumeal = _interopRequireDefault(require("../models/menumeal.model"));
 
 var _date = _interopRequireDefault(require("../utils/date"));
 
@@ -93,7 +99,7 @@ function () {
     /*
      *
      * controller to add menu for Today
-     * required: name, price, quantity, imageUrl
+     *
      *
      */
 
@@ -103,77 +109,107 @@ function () {
       var _addTodayMenu = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee2(req, res) {
-        var _req$body, name, quantity, mealId, meal, today, activeMenu, menu;
-
+        var mealId, meal, today, activeMenu, menu;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.prev = 0;
-                _req$body = req.body, name = _req$body.name, quantity = _req$body.quantity, mealId = _req$body.mealId;
-                _context2.next = 4;
-                return _meal.default.findById(mealId);
+                mealId = req.body.mealId;
+
+                if (mealId) {
+                  _context2.next = 4;
+                  break;
+                }
+
+                throw new Error("select a meal to create today's menu");
 
               case 4:
+                _context2.next = 6;
+                return _meal.default.findById(mealId);
+
+              case 6:
                 meal = _context2.sent;
 
                 if (meal) {
-                  _context2.next = 7;
+                  _context2.next = 9;
                   break;
                 }
 
                 throw new Error("the selected meal cannot found");
 
-              case 7:
+              case 9:
                 today = (0, _date.default)();
-                _context2.next = 10;
+                _context2.next = 12;
                 return _menu.default.findOne({
                   where: {
                     createdAt: today
                   }
                 });
 
-              case 10:
+              case 12:
                 activeMenu = _context2.sent;
 
                 if (!activeMenu) {
-                  _context2.next = 13;
+                  _context2.next = 17;
                   break;
                 }
 
-                throw new Error("There is a menu specified for today");
+                _context2.next = 16;
+                return _menumeal.default.create({
+                  menuId: activeMenu.dataValues.id,
+                  mealId: meal.dataValues.id
+                });
 
-              case 13:
-                _context2.next = 15;
+              case 16:
+                return _context2.abrupt("return", res.status(201).json({
+                  status: "success",
+                  message: "Meal Added to Menu successfully",
+                  menu: activeMenu,
+                  meal: meal
+                }));
+
+              case 17:
+                _context2.next = 19;
                 return _menu.default.create({
-                  name: name,
-                  quantity: quantity,
-                  mealId: mealId,
                   catererId: req.caterer.id
                 });
 
-              case 15:
+              case 19:
                 menu = _context2.sent;
+
+                if (!meal) {
+                  _context2.next = 23;
+                  break;
+                }
+
+                _context2.next = 23;
+                return _menumeal.default.create({
+                  menuId: menu.dataValues.id,
+                  mealId: meal.dataValues.id
+                });
+
+              case 23:
                 return _context2.abrupt("return", res.status(201).json({
                   status: "success",
-                  message: "Meal Added successfully",
+                  message: "Menu Added successfully",
                   menu: menu
                 }));
 
-              case 19:
-                _context2.prev = 19;
+              case 26:
+                _context2.prev = 26;
                 _context2.t0 = _context2["catch"](0);
                 return _context2.abrupt("return", res.status(400).json({
                   status: "error",
                   message: _context2.t0.message
                 }));
 
-              case 22:
+              case 29:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this, [[0, 19]]);
+        }, _callee2, this, [[0, 26]]);
       }));
 
       function addTodayMenu(_x3, _x4) {
@@ -195,7 +231,7 @@ function () {
       var _getTodayMenu = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee3(req, res) {
-        var today, menu;
+        var today, menu, fileDir, mealData, menuData;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
@@ -203,7 +239,16 @@ function () {
                 _context3.prev = 0;
                 today = (0, _date.default)();
                 _context3.next = 4;
-                return _menu.default.findOne({
+                return _menu.default.find({
+                  include: [{
+                    model: _meal.default,
+                    as: "meals",
+                    required: false,
+                    attributes: ["id", "name", "price", "imageUrl"],
+                    through: {
+                      attributes: []
+                    }
+                  }],
                   where: {
                     createdAt: today
                   }
@@ -220,28 +265,46 @@ function () {
                 throw new Error("No current active Menu, try again Later");
 
               case 7:
+                // 1. get the default path to the public directory
+                fileDir = _path.default.join(__dirname, "../public/photos/");
+                mealData = menu.meals.map(function (meal) {
+                  var buff = _fs.default.readFileSync(fileDir + meal.imageUrl);
+
+                  var mealImg = buff.toString("base64");
+                  var data = {
+                    id: meal.id,
+                    name: meal.name,
+                    price: meal.price,
+                    imageUrl: mealImg
+                  };
+                  return data;
+                });
+                menuData = {
+                  id: menu.id,
+                  catererId: menu.catererId,
+                  createdAt: menu.createdAt,
+                  meals: mealData
+                };
                 return _context3.abrupt("return", res.status(200).json({
                   status: "success",
                   message: "Menu retrieved successfully",
-                  data: {
-                    menu: menu
-                  }
+                  menu: menuData
                 }));
 
-              case 10:
-                _context3.prev = 10;
+              case 13:
+                _context3.prev = 13;
                 _context3.t0 = _context3["catch"](0);
                 return _context3.abrupt("return", res.status(400).json({
                   status: "error",
                   meal: _context3.t0.message
                 }));
 
-              case 13:
+              case 16:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, this, [[0, 10]]);
+        }, _callee3, this, [[0, 13]]);
       }));
 
       function getTodayMenu(_x5, _x6) {
