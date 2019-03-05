@@ -203,7 +203,6 @@ describe("Order", () => {
               .get(`${PREFIX}/${order.id}`)
               .set("Authorization", `Bearer ${token}`)
               .end((err, res) => {
-                console.log(res.body);
                 res.should.have.status(200);
                 //   eslint-disable-next-line no-unused-expressions
                 res.should.be.json;
@@ -251,7 +250,6 @@ describe("Order", () => {
                 .set("Authorization", `Bearer ${token}`)
                 .send({ quantity: 5, mealId: meal.id })
                 .end((err, res) => {
-                  console.log(res.body);
                   res.should.have.status(200);
                   //   eslint-disable-next-line no-unused-expressions
                   res.should.be.json;
@@ -300,7 +298,6 @@ describe("Order", () => {
               .set("Authorization", `Bearer ${token}`)
               .send({ deliveryStatus: "delivered" })
               .end((err, res) => {
-                console.log(res.body);
                 res.should.have.status(200);
                 //   eslint-disable-next-line no-unused-expressions
                 res.should.be.json;

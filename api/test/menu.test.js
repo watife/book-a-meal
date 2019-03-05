@@ -105,7 +105,6 @@ describe("Menu", () => {
           .set("Authorization", `Bearer ${token}`)
 
           .end((err, res) => {
-            console.log(res.body);
             res.should.have.status(200);
             //   eslint-disable-next-line no-unused-expressions
             res.should.be.json;
@@ -146,7 +145,6 @@ describe("Menu", () => {
           .set("Authorization", `Bearer ${token}`)
 
           .end((err, res) => {
-            console.log(res.body);
             res.should.have.status(200);
             //   eslint-disable-next-line no-unused-expressions
             res.should.be.json;
