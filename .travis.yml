@@ -13,10 +13,15 @@ services:
 env:
   global:
     - JWT_SECRET=kfngrjodsfmmsdodsosnrindsamawjfejfooeofnnwbqbd
+    - CATERER_PASSWORD=password
+    - CATERER_EMAIL=test@test.com
+    - DATABASE_URL = "book_a_meal"
+    - DATABASE_USER = "user1"
 before_script:
   - psql -c 'CREATE DATABASE book_a_meal;' -U postgres
   - npm install -g nyc
 script:
+  - npm run start
   - npm run test
 after_success:
   - npm run coverage
