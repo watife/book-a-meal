@@ -3,6 +3,8 @@ import http from "http";
 import express from "express";
 import logger from "morgan";
 import bodyParser from "body-parser";
+import cors from "cors";
+import swaggerUi from "swagger-ui-express";
 import bcrypt from "bcrypt";
 import { config } from "dotenv";
 import sequelize from "./utils/database";
@@ -30,13 +32,16 @@ import ordersRoutes from "./routes/order.routes";
 import catererRoutes from "./routes/caterer.routes";
 import customerRoutes from "./routes/customer.routes";
 import categoryRoutes from "./routes/category.routes";
+import swaggerjson from "./swagger.json";
 
 config();
 const port = process.env.PORT || 8000;
 const app = express(); // setup express application
 const server = http.createServer(app);
 
+app.use(cors());
 app.use(logger("dev")); // log requests to the console
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerjson));
 
 // Parse incoming requests data
 app.use(bodyParser.json());
