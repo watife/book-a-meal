@@ -35,7 +35,7 @@ class MealController {
       });
       return res.status(200).json({
         status: "success",
-        Meals: mealsData
+        meals: mealsData
       });
     } catch (error) {
       return res.status(400).json({
@@ -54,6 +54,8 @@ class MealController {
   static async addAMeal(req, res) {
     try {
       const { name, price, imageUrl, categoryId } = req.body;
+
+      console.log(`this is image url${imageUrl.name}`);
 
       const category = await Category.findByPk(categoryId);
 
