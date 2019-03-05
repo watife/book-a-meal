@@ -252,8 +252,10 @@ describe("Category", () => {
 after(done => {
   Caterer.destroy({ where: { email: "default2@test.com" } }).then(() => {
     Category.destroy({ where: { name: "defaultadmin" } }).then(() => {
-      Category.destroy({ where: { name: "spagetti polos" } });
-      done();
+      Category.destroy({ where: { name: "default" } }).then(() => {
+        Category.destroy({ where: { name: "spagetti polos" } });
+        done();
+      });
     });
   });
 });
