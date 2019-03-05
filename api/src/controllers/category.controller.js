@@ -18,7 +18,7 @@ class CategroyController {
       }
       return res.status(200).json({
         status: "success",
-        Category: categories
+        data: categories
       });
     } catch (error) {
       return res.status(400).json({
@@ -75,7 +75,7 @@ class CategroyController {
         throw new Error("Category specified not found");
       }
 
-      const caterer = await Caterer.findById(category.catererId);
+      const caterer = await Caterer.findByPk(category.catererId);
 
       const returnData = {
         id: category.id,
@@ -106,9 +106,9 @@ class CategroyController {
   static async modifyCategory(req, res) {
     try {
       const { id } = req.params;
-      const { body } = req.body;
+      const { body } = req;
 
-      const category = await Category.findById(id);
+      const category = await Category.findByPk(id);
 
       if (!category) {
         throw new Error("Category cannot be found");
@@ -120,7 +120,7 @@ class CategroyController {
 
       const { name } = mealUpdateData;
 
-      await Meal.update({ name }, { where: { id } });
+      await Category.update({ name }, { where: { id } });
 
       return res.status(200).json({
         status: "success",
@@ -151,7 +151,7 @@ class CategroyController {
       }
       return res.status(200).json({
         status: "success",
-        meal: "meal deleted successfully"
+        meal: "category deleted successfully"
       });
     } catch (error) {
       return res.status(400).json({
