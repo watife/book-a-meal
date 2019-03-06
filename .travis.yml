@@ -7,7 +7,7 @@ node_js:
   - "8.12.0"
 before_script:
   - psql -c 'CREATE DATABASE mealtest;' -U postgres
-  - yarn global add nyc
+  - npm install -g nyc
 script:
   - npm test
 after_script:
