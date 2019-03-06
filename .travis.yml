@@ -4,8 +4,8 @@ node_js:
 env:
   global:
     - JWT_SECRET=ifeifeiw0rqdunio00nuububufjani
-    - CATERER_PASSWORD = "fakoo.com123"
-    - CATERER_EMAIL = "fakoredebolu@yahoo.com"
+    - CATERER_PASSWORD="fakoo.com123"
+    - CATERER_EMAIL="fakoredebolu@yahoo.com"
 before_install: cd api
 install:
   - npm install
