@@ -8,7 +8,7 @@
     "start": "node build/app.js",
     "build": "babel api/src -d build && npm run dulpicate-swagger-docs",
     "dulpicate-swagger-docs": "cat api/src/swagger.json >> ./build/swagger.json",
-    "test": "nyc --require @babel/register mocha api/test/*.js --recursive --timeout 5000 --exit ",
+    "test": "nyc --require @babel/register mocha api/test/*.js --recursive --timeout 10000 --exit ",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "boluwatife fakorede",

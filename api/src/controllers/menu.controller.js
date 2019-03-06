@@ -104,7 +104,7 @@ class MenuContoller {
     try {
       const today = dateActive();
 
-      const menu = await Menu.find({
+      const menu = await Menu.findOne({
         include: [
           {
             model: Meal,

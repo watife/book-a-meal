@@ -66,8 +66,6 @@ class OrderController {
         customerId: req.customer.id
       });
 
-      console.log(`this is cust id ${req.customer.id}`);
-
       await OrderMeal.create({
         mealId,
         orderId: order.id,
