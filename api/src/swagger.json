@@ -125,7 +125,7 @@
         }
       }
     },
-    "/api/v1/auth/caterer/": {
+    "/api/v1/caterer/": {
       "post": {
         "tags": [
           "Caterers"
@@ -172,7 +172,7 @@
         }
       }
     },
-    "/api/v1/auth/caterer/login": {
+    "/api/v1/caterer/login": {
       "post": {
         "tags": [
           "Caterers"
