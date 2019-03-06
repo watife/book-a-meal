@@ -3,6 +3,7 @@ node_js:
   - "stable"
 env:
   global:
+    - DATABASE_URL=postgres://root:password@localhost:5432/travis
     - JWT_SECRET=ifeifeiw0rqdunio00nuububufjani
     - CATERER_PASSWORD="fakoo.com123"
     - CATERER_EMAIL="fakoredebolu@yahoo.com"
@@ -13,6 +14,7 @@ services: postgresql
 before_script:
   - psql -c 'DROP DATABASE travis;' -U postgres
   - psql -c 'CREATE DATABASE travis;' -U postgres
+  - psql -c "CREATE USER root WITH PASSWORD 'password';" -U postgres
   - npm install -g nyc
 script:
   - npm test
