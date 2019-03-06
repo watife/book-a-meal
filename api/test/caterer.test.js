@@ -15,19 +15,6 @@ chai.use(chaiHttp);
 
 const PREFIX = "/api/v1/caterer";
 
-const defaultCaterer = {
-  name: "defaultadmin1",
-  email: "default1@test.com",
-  phone: 2348089333186,
-  password: "default"
-};
-
-before(done => {
-  Caterer.create(defaultCaterer).then(caterer => {
-    done();
-  });
-});
-
 describe("Caterer", () => {
   /*
    *
@@ -251,8 +238,6 @@ describe("Caterer", () => {
 
 after(done => {
   Caterer.destroy({ where: { email: "caterer@test.com" } }).then(() => {
-    Caterer.destroy({ where: { email: "default1@test.com" } }).then(() => {
-      done();
-    });
+    done();
   });
 });
