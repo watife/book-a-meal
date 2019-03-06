@@ -93,19 +93,36 @@ const Seeds = async () => {
   }
 };
 
+// sequelize
+//   .sync()
+//   .then(() => {
+//     server.listen(port, () => {
+//       console.log(`Server running at PORT: ${port}`);
+//       app.emit("dbConnected");
+//     });
+//     Caterer.findOne({ where: { id: 1 } }).then(caterer => {
+//       if (!caterer) {
+//         Seeds();
+//         console.log("Seeds added");
+//       }
+//     });
+//   })
+//   .catch(err => {
+//     console.error("Unable to connect to the database:", err);
+//   });
+
 sequelize
   .sync()
   .then(() => {
     console.log("DB Connection has been established");
-    Caterer.findOne({ where: { id: 1 } }).then(caterer => {
-      if (!caterer) {
-        Seeds();
-        console.log("Seeds added");
-      }
-    });
-
-    server.listen(port, () => {
-      console.log(`Server running at PORT: ${port}`);
+    app.listen(port, null, null, () => {
+      app.emit("dbConnected");
+      Caterer.findOne({ where: { id: 1 } }).then(caterer => {
+        if (!caterer) {
+          Seeds();
+          console.log("Seeds added");
+        }
+      });
     });
   })
   .catch(err => {

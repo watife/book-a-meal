@@ -15,6 +15,12 @@ chai.use(chaiHttp);
 
 const PREFIX = "/api/v1/caterer";
 
+before(done => {
+  app.on("dbConnected", () => {
+    done();
+  });
+});
+
 describe("Caterer", () => {
   /*
    *
