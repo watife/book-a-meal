@@ -34,7 +34,7 @@ import categoryRoutes from "./routes/category.routes";
 import swaggerjson from "./swagger.json";
 
 config();
-const port = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 const app = express(); // setup express application
 
 app.use(cors());
@@ -94,8 +94,8 @@ const Seeds = async () => {
 sequelize
   .sync()
   .then(() => {
-    console.log("DB Connection has been established");
-    app.listen(port, null, null, () => {
+    console.log(`DB Connection has been established on port ${PORT}`);
+    app.listen(PORT, null, null, () => {
       app.emit("dbConnected");
       Caterer.findOne({ where: { id: 1 } }).then(caterer => {
         if (!caterer) {
