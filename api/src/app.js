@@ -37,7 +37,6 @@ import swaggerjson from "./swagger.json";
 config();
 const port = process.env.PORT || 8000;
 const app = express(); // setup express application
-const server = http.createServer(app);
 
 app.use(cors());
 app.use(logger("dev")); // log requests to the console
@@ -92,24 +91,6 @@ const Seeds = async () => {
     return console.log(error);
   }
 };
-
-// sequelize
-//   .sync()
-//   .then(() => {
-//     server.listen(port, () => {
-//       console.log(`Server running at PORT: ${port}`);
-//       app.emit("dbConnected");
-//     });
-//     Caterer.findOne({ where: { id: 1 } }).then(caterer => {
-//       if (!caterer) {
-//         Seeds();
-//         console.log("Seeds added");
-//       }
-//     });
-//   })
-//   .catch(err => {
-//     console.error("Unable to connect to the database:", err);
-//   });
 
 sequelize
   .sync()
