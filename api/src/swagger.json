@@ -41,9 +41,7 @@
   "paths": {
     "/api/v1/auth/signup": {
       "post": {
-        "tags": [
-          "Customers"
-        ],
+        "tags": ["Customers"],
         "description": "Register a New Customer in the system",
         "requestBody": {
           "description": "Input Data Format",
@@ -88,9 +86,7 @@
     },
     "/api/v1/auth/login": {
       "post": {
-        "tags": [
-          "Customers"
-        ],
+        "tags": ["Customers"],
         "description": "Log In a Registered Customer",
         "requestBody": {
           "description": "Input Data Format",
@@ -125,11 +121,9 @@
         }
       }
     },
-    "/api/v1/auth/caterer/": {
+    "/api/v1/caterer/": {
       "post": {
-        "tags": [
-          "Caterers"
-        ],
+        "tags": ["Caterers"],
         "description": "Register a New Caterer in the system",
         "requestBody": {
           "description": "Input Data Format",
@@ -172,11 +166,9 @@
         }
       }
     },
-    "/api/v1/auth/caterer/login": {
+    "/api/v1/caterer/login": {
       "post": {
-        "tags": [
-          "Caterers"
-        ],
+        "tags": ["Caterers"],
         "description": "Log In a Registered Caterer",
         "requestBody": {
           "description": "Input Data Format",
@@ -214,9 +206,7 @@
     "/api/v1/category/": {
       "get": {
         "summary": "Get all categories",
-        "tags": [
-          "Categories"
-        ],
+        "tags": ["Categories"],
         "responses": {
           "200": {
             "description": "Categories retrieved successfully"
@@ -233,9 +223,7 @@
       },
       "post": {
         "summary": "Add New Category to the system",
-        "tags": [
-          "Categories"
-        ],
+        "tags": ["Categories"],
         "requestBody": {
           "description": "Input Data Format",
           "content": {
@@ -284,9 +272,7 @@
       ],
       "delete": {
         "summary": "Delete Category with given ID",
-        "tags": [
-          "Categories"
-        ],
+        "tags": ["Categories"],
         "responses": {
           "200": {
             "description": "Category Deleted"
@@ -303,9 +289,7 @@
       },
       "put": {
         "summary": "Modify Category with given ID",
-        "tags": [
-          "Categories"
-        ],
+        "tags": ["Categories"],
         "requestBody": {
           "description": "Input Data Format",
           "content": {
@@ -346,9 +330,7 @@
     "/api/v1/meals/": {
       "get": {
         "summary": "Get all meals for logged in caterer",
-        "tags": [
-          "Meals"
-        ],
+        "tags": ["Meals"],
         "responses": {
           "200": {
             "description": "Logged In Caterer's Meals"
@@ -365,9 +347,7 @@
       },
       "post": {
         "summary": "Add New Meal to the system",
-        "tags": [
-          "Meals"
-        ],
+        "tags": ["Meals"],
         "requestBody": {
           "description": "Input Data Format",
           "content": {
@@ -417,9 +397,7 @@
     "/api/v1/meals/{id}": {
       "get": {
         "summary": "Get the specified meal.",
-        "tags": [
-          "Meals"
-        ],
+        "tags": ["Meals"],
         "responses": {
           "200": {
             "description": "Meals retrived successfully"
@@ -448,9 +426,7 @@
       ],
       "delete": {
         "summary": "Delete Meal with given ID",
-        "tags": [
-          "Meals"
-        ],
+        "tags": ["Meals"],
         "responses": {
           "200": {
             "description": "Meal Deleted"
@@ -467,9 +443,7 @@
       },
       "put": {
         "summary": "Modify Meal with given ID",
-        "tags": [
-          "Meals"
-        ],
+        "tags": ["Meals"],
         "requestBody": {
           "description": "Input Data Format",
           "content": {
@@ -518,9 +492,7 @@
     "/api/v1/menu/": {
       "get": {
         "summary": "Get all menus from all caterers",
-        "tags": [
-          "Menus"
-        ],
+        "tags": ["Menus"],
         "responses": {
           "200": {
             "description": "All Menus Retrieved"
@@ -537,9 +509,7 @@
       },
       "post": {
         "summary": "Add New Meal to Menu in the system",
-        "tags": [
-          "Menus"
-        ],
+        "tags": ["Menus"],
         "requestBody": {
           "description": "Input Data Format",
           "content": {
@@ -577,9 +547,7 @@
     "/api/v1/menu/history": {
       "get": {
         "summary": "Get Menu History",
-        "tags": [
-          "Menus"
-        ],
+        "tags": ["Menus"],
         "responses": {
           "200": {
             "description": "All Menu Retrieved"
@@ -598,9 +566,7 @@
     "/api/v1/orders": {
       "get": {
         "summary": "Get all orders to Logged In Caterer",
-        "tags": [
-          "Orders"
-        ],
+        "tags": ["Orders"],
         "responses": {
           "200": {
             "description": "All Orders Retrieved"
@@ -617,9 +583,7 @@
       },
       "post": {
         "summary": "Add Meal to OrderMeal of Logged In User in the system",
-        "tags": [
-          "Orders"
-        ],
+        "tags": ["Orders"],
         "requestBody": {
           "description": "Input Data Format",
           "content": {
@@ -673,9 +637,7 @@
       ],
       "get": {
         "summary": "get the Order Item for a customer",
-        "tags": [
-          "Orders"
-        ],
+        "tags": ["Orders"],
         "responses": {
           "200": {
             "description": "All Orders Retrieved"
@@ -692,9 +654,7 @@
       },
       "put": {
         "summary": "Update Order Item with give ID",
-        "tags": [
-          "Orders"
-        ],
+        "tags": ["Orders"],
         "requestBody": {
           "description": "Input Data Format",
           "content": {
