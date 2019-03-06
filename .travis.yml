@@ -9,6 +9,7 @@ install:
   - npm install
 services: postgresql
 before_script:
+  - psql -c 'DROP DATABASE travis;' -U postgres
   - psql -c 'CREATE DATABASE travis;' -U postgres
   - npm install -g nyc
 script:
