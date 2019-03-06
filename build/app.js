@@ -69,8 +69,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var port = process.env.PORT || 8000;
 var app = (0, _express.default)(); // setup express application
 
-var server = _http.default.createServer(app);
-
 app.use((0, _cors.default)());
 app.use((0, _morgan.default)("dev")); // log requests to the console
 
@@ -179,20 +177,19 @@ function () {
 
 _database.default.sync().then(function () {
   console.log("DB Connection has been established");
+  app.listen(port, null, null, function () {
+    app.emit("dbConnected");
 
-  _caterer.default.findOne({
-    where: {
-      id: 1
-    }
-  }).then(function (caterer) {
-    if (!caterer) {
-      Seeds();
-      console.log("Seeds added");
-    }
-  });
-
-  server.listen(port, function () {
-    console.log("Server running at PORT: ".concat(port));
+    _caterer.default.findOne({
+      where: {
+        id: 1
+      }
+    }).then(function (caterer) {
+      if (!caterer) {
+        Seeds();
+        console.log("Seeds added");
+      }
+    });
   });
 }).catch(function (err) {
   console.error("Unable to connect to the database:", err);
