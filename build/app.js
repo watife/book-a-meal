@@ -64,7 +64,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 (0, _dotenv.config)();
-var port = process.env.PORT || 5432;
+var PORT = process.env.PORT || 3000;
 var app = (0, _express.default)(); // setup express application
 
 app.use((0, _cors.default)());
@@ -174,8 +174,8 @@ function () {
 }();
 
 _database.default.sync().then(function () {
-  console.log("DB Connection has been established on port ".concat(port));
-  app.listen(port, null, null, function () {
+  console.log("DB Connection has been established on port ".concat(PORT));
+  app.listen(PORT, null, null, function () {
     app.emit("dbConnected");
 
     _caterer.default.findOne({

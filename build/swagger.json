@@ -38,13 +38,12 @@
       "description": "API Endpoints for Customer Orders"
     }
   ],
-  "schemes": ["http"],
-  "consumes": ["application/json", "application/x-www-form-urlencoded"],
-  "produces": ["application/json"],
   "paths": {
     "/api/v1/auth/signup": {
       "post": {
-        "tags": ["Customers"],
+        "tags": [
+          "Customers"
+        ],
         "description": "Register a New Customer in the system",
         "requestBody": {
           "description": "Input Data Format",
@@ -74,23 +73,24 @@
             }
           }
         },
-        "produces": ["application/json"],
         "responses": {
+          "201": {
+            "description": "New customer is registered"
+          },
           "400": {
             "description": "Customer Registration Validation Error"
           },
           "500": {
             "description": "Customer Already Registred"
-          },
-          "201": {
-            "description": "New customer is registered"
           }
         }
       }
     },
     "/api/v1/auth/login": {
       "post": {
-        "tags": ["Customers"],
+        "tags": [
+          "Customers"
+        ],
         "description": "Log In a Registered Customer",
         "requestBody": {
           "description": "Input Data Format",
@@ -112,23 +112,24 @@
             }
           }
         },
-        "produces": ["application/json"],
         "responses": {
+          "200": {
+            "description": "Customer Logged In"
+          },
           "400": {
             "description": "Customer Login Validation Error"
           },
           "500": {
             "description": "Customer Does Not Exist"
-          },
-          "200": {
-            "description": "Customer Logged In"
           }
         }
       }
     },
-    "/api/v1/auth/caterer/signup": {
+    "/api/v1/auth/caterer/": {
       "post": {
-        "tags": ["Caterers"],
+        "tags": [
+          "Caterers"
+        ],
         "description": "Register a New Caterer in the system",
         "requestBody": {
           "description": "Input Data Format",
@@ -148,10 +149,6 @@
                     "type": "string",
                     "description": "Phone Number of Caterer"
                   },
-                  "catering_service": {
-                    "type": "string",
-                    "description": "Name of Catering service"
-                  },
                   "password": {
                     "type": "string",
                     "description": "Password of Caterer"
@@ -162,23 +159,24 @@
             }
           }
         },
-        "produces": ["application/json"],
         "responses": {
+          "201": {
+            "description": "New Caterer is registered"
+          },
           "400": {
             "description": "Caterer Registration Validation Error"
           },
           "500": {
             "description": "Caterer Already Registred"
-          },
-          "201": {
-            "description": "New Caterer is registered"
           }
         }
       }
     },
     "/api/v1/auth/caterer/login": {
       "post": {
-        "tags": ["Caterers"],
+        "tags": [
+          "Caterers"
+        ],
         "description": "Log In a Registered Caterer",
         "requestBody": {
           "description": "Input Data Format",
@@ -200,16 +198,15 @@
             }
           }
         },
-        "produces": ["application/json"],
         "responses": {
+          "200": {
+            "description": "Caterer Logged In"
+          },
           "400": {
             "description": "Caterer Login Validation Error"
           },
           "500": {
             "description": "Caterer Does Not Exist"
-          },
-          "200": {
-            "description": "Caterer Logged In"
           }
         }
       }
@@ -217,14 +214,15 @@
     "/api/v1/category/": {
       "get": {
         "summary": "Get all categories",
-        "tags": ["Categories"],
-        "produces": ["application/json"],
+        "tags": [
+          "Categories"
+        ],
         "responses": {
-          "401": {
-            "description": "Only Authenticated Caterers are Authorized"
-          },
           "200": {
             "description": "Categories retrieved successfully"
+          },
+          "401": {
+            "description": "Only Authenticated Caterers are Authorized"
           }
         },
         "security": [
@@ -235,7 +233,9 @@
       },
       "post": {
         "summary": "Add New Category to the system",
-        "tags": ["Category"],
+        "tags": [
+          "Categories"
+        ],
         "requestBody": {
           "description": "Input Data Format",
           "content": {
@@ -252,16 +252,15 @@
             }
           }
         },
-        "produces": ["application/json"],
         "responses": {
-          "401": {
-            "description": "Only Authenticated Caterers are Authorized"
+          "200": {
+            "description": "New Category Created"
           },
           "400": {
             "description": "Validation Error"
           },
-          "200": {
-            "description": "New Category Created"
+          "401": {
+            "description": "Only Authenticated Caterers are Authorized"
           }
         },
         "security": [
@@ -277,20 +276,23 @@
           "name": "id",
           "in": "path",
           "required": true,
-          "description": "ID of category that we want to work with",
-          "type": "string"
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
         }
       ],
       "delete": {
         "summary": "Delete Category with given ID",
-        "tags": ["Categories"],
-        "produces": ["application/json"],
+        "tags": [
+          "Categories"
+        ],
         "responses": {
-          "401": {
-            "description": "Only Authenticated Caterers are Authorized"
-          },
           "200": {
             "description": "Category Deleted"
+          },
+          "401": {
+            "description": "Only Authenticated Caterers are Authorized"
           }
         },
         "security": [
@@ -301,7 +303,9 @@
       },
       "put": {
         "summary": "Modify Category with given ID",
-        "tags": ["Categories"],
+        "tags": [
+          "Categories"
+        ],
         "requestBody": {
           "description": "Input Data Format",
           "content": {
@@ -318,19 +322,18 @@
             }
           }
         },
-        "produces": ["application/json"],
         "responses": {
-          "401": {
-            "description": "Only Authenticated Caterers are Authorized"
+          "200": {
+            "description": "Meal Updated"
           },
           "400": {
             "description": "Validation Error"
           },
+          "401": {
+            "description": "Only Authenticated Caterers are Authorized"
+          },
           "500": {
             "description": "Meal with given ID does nor exist"
-          },
-          "200": {
-            "description": "Meal Updated"
           }
         },
         "security": [
@@ -343,14 +346,15 @@
     "/api/v1/meals/": {
       "get": {
         "summary": "Get all meals for logged in caterer",
-        "tags": ["Meals"],
-        "produces": ["application/json"],
+        "tags": [
+          "Meals"
+        ],
         "responses": {
-          "401": {
-            "description": "Only Authenticated Caterers are Authorized"
-          },
           "200": {
             "description": "Logged In Caterer's Meals"
+          },
+          "401": {
+            "description": "Only Authenticated Caterers are Authorized"
           }
         },
         "security": [
@@ -361,7 +365,9 @@
       },
       "post": {
         "summary": "Add New Meal to the system",
-        "tags": ["Meals"],
+        "tags": [
+          "Meals"
+        ],
         "requestBody": {
           "description": "Input Data Format",
           "content": {
@@ -376,9 +382,13 @@
                     "type": "string",
                     "description": "Price of new Meal"
                   },
+                  "categoryId": {
+                    "type": "number",
+                    "description": "The category the meal belongs to."
+                  },
                   "imageUrl": {
                     "type": "object",
-                    "description": "Image url data"
+                    "description": "Image url data in base64 and name"
                   }
                 },
                 "type": "object"
@@ -386,16 +396,15 @@
             }
           }
         },
-        "produces": ["application/json"],
         "responses": {
-          "401": {
-            "description": "Only Authenticated Caterers are Authorized"
+          "200": {
+            "description": "New Meal Created"
           },
           "400": {
             "description": "Validation Error"
           },
-          "200": {
-            "description": "New Meal Created"
+          "401": {
+            "description": "Only Authenticated Caterers are Authorized"
           }
         },
         "security": [
@@ -406,25 +415,48 @@
       }
     },
     "/api/v1/meals/{id}": {
+      "get": {
+        "summary": "Get the specified meal.",
+        "tags": [
+          "Meals"
+        ],
+        "responses": {
+          "200": {
+            "description": "Meals retrived successfully"
+          },
+          "401": {
+            "description": "Only Authenticated Caterers are Authorized"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      },
       "parameters": [
         {
           "name": "id",
           "in": "path",
           "required": true,
           "description": "ID of meal that we want to work with",
-          "type": "string"
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
         }
       ],
       "delete": {
         "summary": "Delete Meal with given ID",
-        "tags": ["Meals"],
-        "produces": ["application/json"],
+        "tags": [
+          "Meals"
+        ],
         "responses": {
-          "401": {
-            "description": "Only Authenticated Caterers are Authorized"
-          },
           "200": {
             "description": "Meal Deleted"
+          },
+          "401": {
+            "description": "Only Authenticated Caterers are Authorized"
           }
         },
         "security": [
@@ -435,7 +467,9 @@
       },
       "put": {
         "summary": "Modify Meal with given ID",
-        "tags": ["Meals"],
+        "tags": [
+          "Meals"
+        ],
         "requestBody": {
           "description": "Input Data Format",
           "content": {
@@ -449,6 +483,10 @@
                   "price": {
                     "type": "string",
                     "description": "New price of Meal"
+                  },
+                  "imageUrl": {
+                    "type": "object",
+                    "description": "New image of Meal"
                   }
                 },
                 "type": "object"
@@ -456,19 +494,18 @@
             }
           }
         },
-        "produces": ["application/json"],
         "responses": {
-          "401": {
-            "description": "Only Authenticated Caterers are Authorized"
+          "200": {
+            "description": "Meal Updated"
           },
           "400": {
             "description": "Validation Error"
           },
+          "401": {
+            "description": "Only Authenticated Caterers are Authorized"
+          },
           "500": {
             "description": "Meal with given ID does nor exist"
-          },
-          "200": {
-            "description": "Meal Updated"
           }
         },
         "security": [
@@ -481,14 +518,15 @@
     "/api/v1/menu/": {
       "get": {
         "summary": "Get all menus from all caterers",
-        "tags": ["Menus"],
-        "produces": ["application/json"],
+        "tags": [
+          "Menus"
+        ],
         "responses": {
-          "401": {
-            "description": "Only Authenticated Caterers are Authorized"
-          },
           "200": {
             "description": "All Menus Retrieved"
+          },
+          "401": {
+            "description": "Only Authenticated Caterers are Authorized"
           }
         },
         "security": [
@@ -499,7 +537,9 @@
       },
       "post": {
         "summary": "Add New Meal to Menu in the system",
-        "tags": ["Menus"],
+        "tags": [
+          "Menus"
+        ],
         "requestBody": {
           "description": "Input Data Format",
           "content": {
@@ -516,16 +556,15 @@
             }
           }
         },
-        "produces": ["application/json"],
         "responses": {
-          "401": {
-            "description": "Only Authenticated Caterers are Authorized"
+          "200": {
+            "description": "Meal Added to Menu"
           },
           "400": {
             "description": "Validation Error"
           },
-          "200": {
-            "description": "Meal Added to Menu"
+          "401": {
+            "description": "Only Authenticated Caterers are Authorized"
           }
         },
         "security": [
@@ -535,17 +574,18 @@
         ]
       }
     },
-    "/api/v1/menu/history": {
+    "/api/v1/menu/history/": {
       "get": {
         "summary": "Get Menu History",
-        "tags": ["Menus"],
-        "produces": ["application/json"],
+        "tags": [
+          "Menus"
+        ],
         "responses": {
-          "401": {
-            "description": "Only Authenticated Caterers are Authorized"
-          },
           "200": {
             "description": "All Menu Retrieved"
+          },
+          "401": {
+            "description": "Only Authenticated Caterers are Authorized"
           }
         },
         "security": [
@@ -555,17 +595,18 @@
         ]
       }
     },
-    "/api/v1/orders": {
+    "/api/v1/orders/": {
       "get": {
         "summary": "Get all orders to Logged In Caterer",
-        "tags": ["Orders"],
-        "produces": ["application/json"],
+        "tags": [
+          "Orders"
+        ],
         "responses": {
-          "401": {
-            "description": "Only Authenticated Caterers are Authorized"
-          },
           "200": {
             "description": "All Orders Retrieved"
+          },
+          "401": {
+            "description": "Only Authenticated Caterers are Authorized"
           }
         },
         "security": [
@@ -576,7 +617,9 @@
       },
       "post": {
         "summary": "Add Meal to OrderMeal of Logged In User in the system",
-        "tags": ["Orders"],
+        "tags": [
+          "Orders"
+        ],
         "requestBody": {
           "description": "Input Data Format",
           "content": {
@@ -597,16 +640,15 @@
             }
           }
         },
-        "produces": ["application/json"],
         "responses": {
-          "401": {
-            "description": "Only Authenticated Users are Authorized"
+          "200": {
+            "description": "Meal Added to Order Items"
           },
           "400": {
             "description": "Validation Error"
           },
-          "200": {
-            "description": "Meal Added to Order Items"
+          "401": {
+            "description": "Only Authenticated Users are Authorized"
           }
         },
         "security": [
@@ -623,12 +665,17 @@
           "in": "path",
           "required": true,
           "description": "ID of order by Authorized Customer",
-          "type": "string"
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
         }
       ],
       "put": {
         "summary": "Update Order Item with give ID",
-        "tags": ["Orders"],
+        "tags": [
+          "Orders"
+        ],
         "requestBody": {
           "description": "Input Data Format",
           "content": {
@@ -646,17 +693,17 @@
           }
         },
         "responses": {
-          "401": {
-            "description": "Only Authenticated Users are Authorized"
+          "200": {
+            "description": "Order Item Updated"
           },
           "400": {
             "description": "Validation Error"
           },
+          "401": {
+            "description": "Only Authenticated Users are Authorized"
+          },
           "500": {
             "description": "Order Item With Given ID does not exist"
-          },
-          "200": {
-            "description": "Order Item Updated"
           }
         },
         "security": [
