@@ -239,7 +239,7 @@ function () {
                 _context3.prev = 0;
                 today = (0, _date.default)();
                 _context3.next = 4;
-                return _menu.default.find({
+                return _menu.default.findOne({
                   include: [{
                     model: _meal.default,
                     as: "meals",

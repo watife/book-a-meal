@@ -165,34 +165,33 @@ function () {
 
               case 15:
                 order = _context2.sent;
-                console.log("this is cust id ".concat(req.customer.id));
-                _context2.next = 19;
+                _context2.next = 18;
                 return _orderMeal.default.create({
                   mealId: mealId,
                   orderId: order.id,
                   customerId: req.customer.id
                 });
 
-              case 19:
+              case 18:
                 return _context2.abrupt("return", res.status(201).json({
                   status: "success",
                   message: "Order successfully placed."
                 }));
 
-              case 22:
-                _context2.prev = 22;
+              case 21:
+                _context2.prev = 21;
                 _context2.t0 = _context2["catch"](0);
                 return _context2.abrupt("return", res.status(400).json({
                   status: "error",
                   message: _context2.t0.message
                 }));
 
-              case 25:
+              case 24:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this, [[0, 22]]);
+        }, _callee2, this, [[0, 21]]);
       }));
 
       function addOrder(_x3, _x4) {

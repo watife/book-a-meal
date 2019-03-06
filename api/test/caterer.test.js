@@ -1,11 +1,9 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import jwt from "jsonwebtoken";
 import chai from "chai";
 import chaiHttp from "chai-http";
 import app from "../src/app";
-import secret from "../src/utils/jwt";
 
 import Caterer from "../src/models/caterer.model";
 
@@ -17,26 +15,20 @@ chai.use(chaiHttp);
 
 const PREFIX = "/api/v1/caterer";
 
-describe("Caterer", () => {
-  /*
-   *
-   *Test for the create caterer validation request
-   *
-   */
-  it("it should fail validation  on add a SINGLE caterer on /api/v1/caterer POST", done => {
-    chai
-      .request(app)
-      .post(PREFIX)
-      .send({ name: "test", email: "caterer@test.com" })
-      .end((err, res) => {
-        res.should.have.status(400);
-        // eslint-disable-next-line no-unused-expressions
-        assert.equal(res.body.status, "error");
-        assert.equal(res.body.type, "validation");
-        done();
-      });
-  });
+const defaultCaterer = {
+  name: "defaultadmin1",
+  email: "default1@test.com",
+  phone: 2348089333186,
+  password: "default"
+};
 
+before(done => {
+  Caterer.create(defaultCaterer).then(caterer => {
+    done();
+  });
+});
+
+describe("Caterer", () => {
   /*
    *
    *Test for the add a caterer request
@@ -70,6 +62,25 @@ describe("Caterer", () => {
         res.body.caterer.should.not.have.property("password");
         res.body.caterer.name.should.equal("cate");
         res.body.caterer.email.should.equal("caterer@test.com");
+        done();
+      });
+  });
+
+  /*
+   *
+   *Test for the create caterer validation request
+   *
+   */
+  it("it should fail validation  on add a SINGLE caterer on /api/v1/caterer POST", done => {
+    chai
+      .request(app)
+      .post(PREFIX)
+      .send({ name: "test", email: "caterer@test.com" })
+      .end((err, res) => {
+        res.should.have.status(400);
+        // eslint-disable-next-line no-unused-expressions
+        assert.equal(res.body.status, "error");
+        assert.equal(res.body.type, "validation");
         done();
       });
   });
@@ -240,6 +251,8 @@ describe("Caterer", () => {
 
 after(done => {
   Caterer.destroy({ where: { email: "caterer@test.com" } }).then(() => {
-    done();
+    Caterer.destroy({ where: { email: "default1@test.com" } }).then(() => {
+      done();
+    });
   });
 });
