@@ -574,7 +574,7 @@
         ]
       }
     },
-    "/api/v1/menu/history/": {
+    "/api/v1/menu/history": {
       "get": {
         "summary": "Get Menu History",
         "tags": [
@@ -595,7 +595,7 @@
         ]
       }
     },
-    "/api/v1/orders/": {
+    "/api/v1/orders": {
       "get": {
         "summary": "Get all orders to Logged In Caterer",
         "tags": [
@@ -671,6 +671,25 @@
           }
         }
       ],
+      "get": {
+        "summary": "get the Order Item for a customer",
+        "tags": [
+          "Orders"
+        ],
+        "responses": {
+          "200": {
+            "description": "All Orders Retrieved"
+          },
+          "401": {
+            "description": "Only Authenticated Caterers are Authorized"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      },
       "put": {
         "summary": "Update Order Item with give ID",
         "tags": [
