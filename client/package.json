@@ -1,0 +1,39 @@
+{
+  "name": "book_a_meal",
+  "version": "1.0.0",
+  "description": "a meal booking application",
+  "main": "app.js",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "transform-class-properties"
+    ]
+  },
+  "scripts": {
+    "start": "live-server public/",
+    "build": "webpack",
+    "dev-server": "webpack-dev-server"
+  },
+  "author": "fakorede boluwatife",
+  "license": "ISC",
+  "dependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "live-server": "^1.2.1",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
+  }
+}
