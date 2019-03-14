@@ -3,7 +3,7 @@ import express from "express";
 import logger from "morgan";
 import bodyParser from "body-parser";
 import cors from "cors";
-import swaggerUi from "swagger-ui-express";
+// import swaggerUi from "swagger-ui-express";
 import bcrypt from "bcrypt";
 import { config } from "dotenv";
 import sequelize from "./utils/database";
