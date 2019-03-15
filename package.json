@@ -7,8 +7,9 @@
     "dev": "nodemon --exec babel-node api/src/app.js",
     "start": "node build/app.js",
     "dev-build": "babel api/src -d build",
-    "build": "babel api/src -d build && npm run dulpicate-swagger-docs",
+    "build": "babel api/src -d build && npm run copy",
     "dulpicate-swagger-docs": "cat api/src/swagger.json >> ./build/swagger.json",
+    "copy": "cp -r api/src/* build",
     "test": "nyc --require @babel/register mocha api/test/*.js --recursive --timeout 10000 --exit ",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
