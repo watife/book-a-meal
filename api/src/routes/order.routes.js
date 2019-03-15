@@ -13,7 +13,7 @@ router.get(
   AuthController.verifyUserToken,
   OrderContoller.fetchUserOrders
 );
-router.get("/", OrderContoller.fetchAllOrders);
+router.get("/", AuthController.verifyAdminToken, OrderContoller.fetchAllOrders);
 router.post(
   "/",
   OrderValidate.validateOrder,
