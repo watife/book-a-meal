@@ -68,8 +68,8 @@ describe("Menu", () => {
                 res.should.be.json;
                 res.body.should.be.a("object");
                 res.body.should.have.property("status");
-                res.body.should.have.property("menu");
-                res.body.menu.should.be.a("object");
+                res.body.should.have.property("data");
+                res.body.data.should.be.a("object");
                 done();
               });
           });
@@ -111,7 +111,7 @@ describe("Menu", () => {
             res.body.should.be.a("object");
             res.body.should.have.property("status");
             res.body.status.should.equal("success");
-            res.body.should.have.property("menu");
+            res.body.should.have.property("data");
             done();
           });
       }
@@ -150,10 +150,10 @@ describe("Menu", () => {
             res.should.be.json;
             res.body.should.be.a("object");
             res.body.should.have.property("status");
-            res.body.should.have.property("menus");
-            res.body.menus.should.be.a("array");
-            res.body.menus[0].should.have.property("id");
-            res.body.menus[0].should.have.property("catererId");
+            res.body.should.have.property("data");
+            res.body.data.should.be.a("array");
+            res.body.data[0].should.have.property("id");
+            res.body.data[0].should.have.property("catererId");
             done();
           });
       }

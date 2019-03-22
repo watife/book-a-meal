@@ -114,12 +114,12 @@ describe("Meals", () => {
               res.should.be.json;
               res.body.should.be.a("object");
               res.body.should.have.property("status");
-              res.body.should.have.property("meal");
-              res.body.meal.should.be.a("object");
-              res.body.meal.should.have.property("id");
-              res.body.meal.should.have.property("price");
-              res.body.meal.should.have.property("name");
-              res.body.meal.should.have.property("imageUrl");
+              res.body.should.have.property("data");
+              res.body.data.should.be.a("object");
+              res.body.data.should.have.property("id");
+              res.body.data.should.have.property("price");
+              res.body.data.should.have.property("name");
+              res.body.data.should.have.property("imageUrl");
               done();
             });
         });
@@ -163,8 +163,8 @@ describe("Meals", () => {
             res.body.should.be.a("object");
             res.body.should.have.property("status");
             res.body.status.should.equal("success");
-            res.body.should.have.property("meals");
-            res.body.meals.should.be.a("array");
+            res.body.should.have.property("data");
+            res.body.data.should.be.a("array");
             done();
           });
       }

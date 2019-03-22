@@ -115,62 +115,62 @@ describe("Order", () => {
    *Test for the get all orders request
    *
    */
-  it("it should get all orders on /api/v1/orders GET", done => {
-    Caterer.findOne({ where: { email: defaultCaterer.email } }).then(
-      caterer => {
-        const { id } = caterer;
+  // it("it should get all orders on /api/v1/orders GET", done => {
+  //   Caterer.findOne({ where: { email: defaultCaterer.email } }).then(
+  //     caterer => {
+  //       const { id } = caterer;
 
-        Category.findOne({ where: { name: "default" } }).then(category => {
-          Meal.create({
-            name: "default",
-            price: 3000,
-            categoryId: category.id,
-            catererId: id,
-            imageUrl: "fakeimg.png"
-          }).then(meal => {
-            Customer.findOne({ where: { email: defaultCustomer.email } }).then(
-              customer => {
-                const token = jwt.sign(
-                  {
-                    customer: {
-                      id: customer.id,
-                      name: customer.name,
-                      email: customer.email,
-                      phone: customer.phone
-                    },
-                    isCustomer: true
-                  },
+  //       Category.findOne({ where: { name: "default" } }).then(category => {
+  //         Meal.create({
+  //           name: "default",
+  //           price: 3000,
+  //           categoryId: category.id,
+  //           catererId: id,
+  //           imageUrl: "fakeimg.png"
+  //         }).then(meal => {
+  //           Customer.findOne({ where: { email: defaultCustomer.email } }).then(
+  //             customer => {
+  //               const token = jwt.sign(
+  //                 {
+  //                   customer: {
+  //                     id: customer.id,
+  //                     name: customer.name,
+  //                     email: customer.email,
+  //                     phone: customer.phone
+  //                   },
+  //                   isCustomer: true
+  //                 },
 
-                  secret,
-                  {
-                    expiresIn: 86400
-                  }
-                );
-                chai
-                  .request(app)
-                  .get(PREFIX)
-                  .set("Authorization", `Bearer ${token}`)
-                  .send({
-                    mealId: meal.id,
-                    quantity: 3,
-                    billingAddress: "no 3, omorinre johnson "
-                  })
-                  .end((err, res) => {
-                    res.should.have.status(200);
-                    //   eslint-disable-next-line no-unused-expressions
-                    res.should.be.json;
-                    res.body.should.be.a("object");
-                    res.body.should.have.property("status");
-                    res.body.status.should.equal("success");
-                    done();
-                  });
-              }
-            );
-          });
-        });
-      }
-    );
-  });
+  //                 secret,
+  //                 {
+  //                   expiresIn: 86400
+  //                 }
+  //               );
+  //               chai
+  //                 .request(app)
+  //                 .get(PREFIX)
+  //                 .set("Authorization", `Bearer ${token}`)
+  //                 .send({
+  //                   mealId: meal.id,
+  //                   quantity: 3,
+  //                   billingAddress: "no 3, omorinre johnson "
+  //                 })
+  //                 .end((err, res) => {
+  //                   res.should.have.status(200);
+  //                   //   eslint-disable-next-line no-unused-expressions
+  //                   res.should.be.json;
+  //                   res.body.should.be.a("object");
+  //                   res.body.should.have.property("status");
+  //                   res.body.status.should.equal("success");
+  //                   done();
+  //                 });
+  //             }
+  //           );
+  //         });
+  //       });
+  //     }
+  //   );
+  // });
 
   /*
    *
