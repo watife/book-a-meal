@@ -24,7 +24,7 @@ body {
 }
 
 .sidebar {
-  flex: 0 0 25%;
+  flex: 0 0 26%;
   background-color: #ebe9e931;
   display: flex;
   flex-direction: column;
@@ -37,11 +37,23 @@ body {
   flex: 1;
   /* background-color: aqua; */
   border-left: 0.7px solid #0000;
+  max-height: 60rem;
+  overflow: scroll;
 }
 
 .card {
   background-color: #ffff;
   width: 400px;
+  margin: 80px auto;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+  border-radius: 7px;
+}
+
+.card-large {
+  background-color: #ffff;
+  width: 700px;
   margin: 80px auto;
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
@@ -69,5 +81,87 @@ a p {
 }
 
 .signout {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  width: 8rem;
+  background-color: #6054e9;
+  padding: 1rem;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.navigation {
+  height: 47rem;
+}
+
+/* form */
+.form {
+  padding: 2rem;
+  min-height: 40rem;
+}
+
+.form-img {
+  width: 8rem;
+  height: 8rem;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+}
+
+.form-header p {
+  font-size: 1.4rem;
+  margin-left: 16rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.form-body {
+  margin-top: 4rem;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.input-group-create {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+  cursor: pointer;
+}
+
+.input-group-create input {
+  width: 49%;
+  padding: 1.1rem;
+  border-radius: 4px;
+  border: 1px solid #c5c3c3;
+  outline: none;
+}
+
+.input-group-create input:focus {
+  border: 1px solid #6054e9;
+}
+
+.input-group-create select {
+  width: 49%;
+  height: 4rem;
+  background-color: #fff;
+  padding: 1.1rem;
+  border-radius: 4px;
+  border: 1px solid #c5c3c3;
+  outline: none;
+  cursor: pointer;
+}
+
+.input-group-create button {
+  width: 49%;
+  height: 4rem;
+  background-color: #675ecc;
+  padding: 1.1rem;
+  color: #fff;
+  border-radius: 4px;
+  border: 1px solid #675ecc;
+  outline: none;
+  cursor: pointer;
 }

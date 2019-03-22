@@ -51,7 +51,7 @@ class CustomerController {
         status: "success",
         message: "Customer Registered",
         token: `Bearer ${jwtToken}`,
-        customer: customerToSave
+        data: customerToSave
       });
     } catch (error) {
       return res.status(400).json({
@@ -100,7 +100,7 @@ class CustomerController {
         status: "success",
         message: "Caterer Logged In",
         token: `Bearer ${jwtToken}`,
-        customer: customerToSave
+        data: customerToSave
       });
     } catch (error) {
       return res.status(400).json({
@@ -135,7 +135,7 @@ class CustomerController {
 
       return res.status(200).json({
         status: "success",
-        caterer: safeCustomer
+        data: safeCustomer
       });
     } catch (error) {
       return res.status(400).json({

@@ -19,7 +19,8 @@ class OrderController {
 
       return res.status(200).json({
         status: "success",
-        orders
+        message: "Order fetched successfully",
+        data: orders
       });
     } catch (error) {
       return res.status(400).json({
@@ -74,7 +75,11 @@ class OrderController {
 
       return res.status(201).json({
         status: "success",
-        message: "Order successfully placed."
+        message: "Order successfully placed.",
+        data: {
+          meal: findMeal,
+          order
+        }
       });
     } catch (error) {
       return res.status(400).json({
@@ -114,12 +119,12 @@ class OrderController {
       return res.status(200).json({
         status: "success",
         message: "Order retrieved successfully",
-        order: orderData
+        data: orderData
       });
     } catch (error) {
       return res.status(400).json({
         status: "error",
-        meal: error.message
+        message: error.message
       });
     }
   }
@@ -172,14 +177,21 @@ class OrderController {
       const newMealId =
         body.mealId !== orderMeal.mealId ? body.mealId : orderMeal.mealId;
 
-      await OrderMeal.update(
+      const updatedOrder = await OrderMeal.update(
         { mealId: newMealId },
         { where: { orderId: id, customerId: req.customer.id } }
       );
 
+      if (!updatedOrder) {
+        throw new Error("Could not update this meal");
+      }
+
+      const newOrder = await Order.findByPk(id);
+
       return res.status(200).json({
         status: "success",
-        message: "Order successfully Updated"
+        message: "Order successfully Updated",
+        data: newOrder
       });
     } catch (error) {
       return res.status(400).json({

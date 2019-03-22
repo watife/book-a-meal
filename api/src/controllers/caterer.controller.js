@@ -47,7 +47,7 @@ class CatererController {
         status: "success",
         message: "Caterer Registered",
         token: `Bearer ${jwtToken}`,
-        caterer: catererToSave
+        data: catererToSave
       });
     } catch (error) {
       return res.status(500).json({
@@ -96,7 +96,7 @@ class CatererController {
         status: "success",
         message: "Caterer Logged In",
         token: `Bearer ${jwtToken}`,
-        caterer: catererToSave
+        data: catererToSave
       });
     } catch (error) {
       return res.status(400).json({

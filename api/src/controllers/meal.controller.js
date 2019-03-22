@@ -35,7 +35,7 @@ class MealController {
       });
       return res.status(200).json({
         status: "success",
-        meals: mealsData
+        data: mealsData
       });
     } catch (error) {
       return res.status(400).json({
@@ -160,12 +160,12 @@ class MealController {
       return res.status(200).json({
         status: "success",
         message: "Meal retrieved successfully",
-        meal: data
+        data
       });
     } catch (error) {
       return res.status(400).json({
         status: "error",
-        meal: error.message
+        message: error.message
       });
     }
   }
@@ -237,11 +237,20 @@ class MealController {
         });
       }
 
-      await Meal.update({ name, price, imageUrl }, { where: { id } });
+      const updatedMeal = await Meal.update(
+        { name, price, imageUrl },
+        { where: { id } }
+      );
 
+      if (!updatedMeal) {
+        throw new Error("could not update this meal");
+      }
+
+      const newMeal = Meal.findByPk(id);
       return res.status(200).json({
         status: "success",
-        message: "Meal successfully Updated"
+        message: "Meal successfully Updated",
+        data: newMeal
       });
     } catch (error) {
       return res.status(400).json({
@@ -286,7 +295,7 @@ class MealController {
 
       return res.status(200).json({
         status: "success",
-        meal: "meal deleted successfully"
+        message: "meal deleted successfully"
       });
     } catch (error) {
       return res.status(500).json({

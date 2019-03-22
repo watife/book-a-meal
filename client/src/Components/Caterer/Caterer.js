@@ -1,172 +1,171 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 
+/**
+ * Dashboard Routes
+ */
+import dashboardMain from "../../Routes/dashboardMain";
+
+/**
+ * Import Images
+ */
+import tea from "../../assets/svg/tea.svg";
+
+/**
+ * Server and state updates
+ */
+import * as actions from "../../Actions/actions";
+import { connect } from "react-redux";
+import { USER } from "../../Actions/types";
+
+/**
+ * Import css
+ */
 import "./caterer.css";
 
-// Import the images
-import avatar from "../../assets/svg/avatar.svg";
-import tea from "../../assets/svg/tea.svg";
-import cart from "../../assets/svg/cart.svg";
+class Caterer extends Component {
+  state = {
+    activeNav: "",
+    activeDropDown: "Today"
+  };
 
-const Caterer = props => {
-  return (
-    <div className="admin">
-      <div>
-        <div className="container">
-          <div className="user-admin__header">
-            <div className="logo logo-admin">BookMyMeal</div>
-            <div className="avatar">
-              {/* <a href="caterer.html">
-                <img src={avatar} alt className="admin-avatar" />
-              </a> */}
-              <Link to="/">
-                <div className="signout">SignOut</div>{" "}
-              </Link>
-              <a href="billing.html">
-                <img src={cart} alt="cart" className="cart-img" />
-              </a>
+  activeNavChange = nav => {
+    this.setState({ activeNav: nav });
+  };
+
+  activeDropDownChange = nav => {
+    this.setState({ activeDropDown: nav });
+  };
+
+  componentDidMount() {
+    this.props.actionFake(USER);
+  }
+
+  render() {
+    const { activeNav, activeDropDown } = this.state;
+    const selected = "menu s-active";
+    const nonSelected = "menu";
+    const one = "menu-list active";
+    const none = "menu-list";
+    return (
+      <div className="admin">
+        <div>
+          <div className="container">
+            <div className="user-admin__header">
+              <div className="logo logo-admin">BookMyMeal</div>
+              <div className="avatar">
+                {/* <a href="caterer.html">
+                  <img src={avatar} alt className="admin-avatar" />
+                </a> */}
+                <Link to="/">
+                  <div className="signout">SignOut</div>{" "}
+                </Link>
+                {/* <a href="billing.html">
+                  <img src={cart} alt="cart" className="cart-img" />
+                </a> */}
+              </div>
             </div>
-          </div>
-          <main className="content">
-            <aside className="sidebar">
-              <nav className="navigation">
-                <div className="nav-img__container">
-                  <img src={tea} alt="nav image" className="nav-img" />
-                  <p className="nav-img__text">
-                    Create awesome Menu for today!
-                  </p>
-                </div>
-                <hr className="ruler" />
-                <div className="nav-unorder">
-                  <div className="nav-link">
-                    <div className="menu">Menu</div>
-                    <div className="menu-list active">Today</div>
-                    <div className="menu-list">History</div>
+            <main className="content">
+              <aside className="sidebar">
+                <nav className="navigation">
+                  <div className="nav-img__container">
+                    <img src={tea} alt="nav image" className="nav-img" />
+                    <p className="nav-img__text">
+                      Create awesome Menu for today!
+                    </p>
                   </div>
-                  <div className="nav-link">Order History</div>
-                  <div className="nav-link">Meals</div>
-                  <div className="menu-list active">Add meal</div>
-                  <div className="menu-list">All Meals</div>
-                </div>
-              </nav>
-              <div className="legal">
-                © 2019 by Boluwatife. All rights reserved.
-              </div>
-            </aside>
-            <main className="main">
-              <div className="main-header">
-                <p>Spagetti</p>
-              </div>
-              <hr className="ruler" />
-              <div className="main-dish">
-                <div className="main-dish__title">Spagetti Native</div>
-                <div className="main-dish__item">
-                  <div className="main-dish__item--description">
-                    <img
-                      src="./assets/images/spaghetti.jpg"
-                      alt="spagetti"
-                      className="dish-item--img"
-                    />
-                    <div className="dish-item-desc">
-                      <span>Spagetti &amp; Chicken</span>
-                      <p>
-                        Spagetti spiced with shrimp and chicken to go!... yaay!
-                      </p>
-                      <p>
-                        A choice made by legends in the game, specially for you
-                        and your own!
-                      </p>
+                  <hr className="ruler" />
+
+                  <div className="nav-unorder">
+                    <div className="nav-link">
+                      <div
+                        onClick={() => this.activeNavChange("Menu")}
+                        className={
+                          activeNav === "Menu" ? selected : nonSelected
+                        }
+                      >
+                        Menu
+                      </div>
+                      <div
+                        style={{
+                          display: activeNav === "Menu" ? "inherit" : "none"
+                        }}
+                      >
+                        <Link to="/caterer/menu">
+                          <div className="menu-list">Today</div>
+                        </Link>
+                        <Link to="/caterer/menu/create">
+                          <div className="menu-list">Add Meal</div>
+                        </Link>
+                        {/* <div className="menu-list">History</div> */}
+                      </div>
                     </div>
-                    <div className="dish-item-price">
-                      <span>$10.20</span>
-                      <button className="add-btn">add</button>
+                    <div className="nav-link">
+                      <div
+                        onClick={() => this.activeNavChange("Meal")}
+                        className={
+                          activeNav === "Meal" ? selected : nonSelected
+                        }
+                      >
+                        Meal
+                      </div>
+
+                      <div
+                        style={{
+                          display: activeNav === "Meal" ? "inherit" : "none"
+                        }}
+                      >
+                        <Link to="/caterer/meal/create">
+                          <div className="menu-list">Create</div>
+                        </Link>
+
+                        <Link to="/caterer/category/create">
+                          <div className="menu-list">Add Category</div>
+                        </Link>
+                        <Link to="/caterer/meals">
+                          <div className="menu-list">All Meals</div>
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className="main-dish__item">
-                  <div className="main-dish__item--description">
-                    <img
-                      src="./assets/images/spaghetti.jpg"
-                      alt="spagetti"
-                      className="dish-item--img"
-                    />
-                    <div className="dish-item-desc">
-                      <span>Spagetti &amp; Chiken Curry</span>
-                      <p>
-                        Spagetti spiced with curry sauce and chicken to go!...
-                        great choice!
-                      </p>
-                      <p>
-                        A choice made by legends in the game, specially for you
-                        and your own!
-                      </p>
-                    </div>
-                    <div className="dish-item-price">
-                      <span>$10.20</span>
-                      <button className="add-btn">add</button>
+                    <div className="nav-link">
+                      <div
+                        onClick={() => this.activeNavChange("Order")}
+                        className={
+                          activeNav === "Order" ? selected : nonSelected
+                        }
+                      >
+                        Order
+                      </div>
                     </div>
                   </div>
+                </nav>
+                <div className="legal">
+                  © 2019 by Boluwatife. All rights reserved.
                 </div>
-              </div>
-              <div className="main-dish">
-                <div className="main-dish__title">Spagetti for Veggies</div>
-                <div className="main-dish__item">
-                  <div className="main-dish__item--description">
-                    <img
-                      src="./assets/images/spaghetti.jpg"
-                      alt="spagetti"
-                      className="dish-item--img"
-                    />
-                    <div className="dish-item-desc">
-                      <span>Spagetti &amp; Chicken</span>
-                      <p>
-                        Spagetti spiced with shrimp and chicken to go!... yaay!
-                      </p>
-                      <p>
-                        A choice made by legends in the game, specially for you
-                        and your own!
-                      </p>
-                    </div>
-                    <div className="dish-item-price">
-                      <span>$10.20</span>
-                      <button className="add-btn">add</button>
-                    </div>
-                  </div>
-                </div>
-                <div className="main-dish__item">
-                  <div className="main-dish__item--description">
-                    <img
-                      src="./assets/images/spaghetti.jpg"
-                      alt="spagetti"
-                      className="dish-item--img"
-                    />
-                    <div className="dish-item-desc">
-                      <span>Spagetti &amp; Chiken Curry</span>
-                      <p>
-                        Spagetti spiced with curry sauce and chicken to go!...
-                        great choice!
-                      </p>
-                      <p>
-                        A choice made by legends in the game, specially for you
-                        and your own!
-                      </p>
-                    </div>
-                    <div className="dish-item-price">
-                      <span>$10.20</span>
-                      <button className="add-btn">add</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </aside>
+              {/*
+               * Render the main part of the dashboard here
+               */}
+              <main className="main">
+                {dashboardMain.map((route, index) => (
+                  <Route
+                    key={index}
+                    path={route.path}
+                    exact={route.exact}
+                    component={route.main}
+                  />
+                ))}
+              </main>
             </main>
-          </main>
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
-Caterer.propTypes = {};
-
-export default Caterer;
+export default connect(
+  null,
+  actions
+)(Caterer);

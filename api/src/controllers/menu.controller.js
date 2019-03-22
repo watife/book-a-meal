@@ -22,7 +22,8 @@ class MenuContoller {
       }
       return res.status(200).json({
         status: "success",
-        menus
+        message: "menus retrieved successfully",
+        data: menus
       });
     } catch (error) {
       return res.status(400).json({
@@ -65,8 +66,10 @@ class MenuContoller {
         return res.status(201).json({
           status: "success",
           message: "Meal Added to Menu successfully",
-          menu: activeMenu,
-          meal
+          data: {
+            menu: activeMenu,
+            meal
+          }
         });
       }
 
@@ -84,7 +87,7 @@ class MenuContoller {
       return res.status(201).json({
         status: "success",
         message: "Menu Added successfully",
-        menu
+        data: menu
       });
     } catch (error) {
       return res.status(400).json({
@@ -147,7 +150,7 @@ class MenuContoller {
       return res.status(200).json({
         status: "success",
         message: "Menu retrieved successfully",
-        menu: menuData
+        data: menuData
       });
     } catch (error) {
       return res.status(400).json({

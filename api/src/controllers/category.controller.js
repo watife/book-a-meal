@@ -1,4 +1,3 @@
-import Meal from "../models/meal.model";
 import Category from "../models/category.model";
 import Caterer from "../models/caterer.model";
 
@@ -43,6 +42,10 @@ class CategroyController {
         catererId: req.caterer.id
       });
 
+      if (!category) {
+        throw new Error("could not create category");
+      }
+
       return res.status(201).json({
         status: "success",
         message: "Category Created successfully",
@@ -85,14 +88,12 @@ class CategroyController {
       return res.status(200).json({
         status: "success",
         message: "Category retrieved successfully",
-        data: {
-          category: returnData
-        }
+        data: returnData
       });
     } catch (error) {
       return res.status(400).json({
         status: "error",
-        meal: error.message
+        message: error.message
       });
     }
   }
@@ -120,16 +121,26 @@ class CategroyController {
 
       const { name } = mealUpdateData;
 
-      await Category.update({ name }, { where: { id } });
+      const updatedCategory = await Category.update(
+        { name },
+        { where: { id } }
+      );
+
+      if (!updatedCategory) {
+        throw new Error("Category could not be updated");
+      }
+
+      const newCategory = await Category.findByPk(id);
 
       return res.status(200).json({
         status: "success",
-        message: "Category successfully Updated"
+        message: "Category successfully Updated",
+        data: newCategory
       });
     } catch (error) {
       return res.status(400).json({
         status: "error",
-        meal: error.message
+        message: error.message
       });
     }
   }
@@ -151,7 +162,7 @@ class CategroyController {
       }
       return res.status(200).json({
         status: "success",
-        meal: "category deleted successfully"
+        message: "category deleted successfully"
       });
     } catch (error) {
       return res.status(400).json({
